@@ -17,7 +17,7 @@ app.get('/tournaments', async(req: Request, res: Response) => {
     const query = pg.select("id", "name").from<Tournament>("tournament");
     const tournaments = await query;
     
-    res.send(tournaments.map(tournament => tournament.name).join(", "))
+    res.json( { tournaments })
 })
 
 app.listen(port, function () {
