@@ -2,20 +2,25 @@
   "name": "sports-tournament-app",
   "version": "1.0.0",
   "description": "Plan your sports tournament",
-  "main": "index.js",
+  "main": "./dist/app.js",
   "scripts": {
-    "dev": "nodemon src/app.ts"
+    "dev": "nodemon src/app.ts",
+    "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.ts"
   },
   "author": "Sidney Klass",
   "license": "MIT",
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.6",
+    "@types/pg": "^8.6.1",
     "nodemon": "^2.0.14",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.13",
+    "pg": "^8.7.1"
   }
 }
