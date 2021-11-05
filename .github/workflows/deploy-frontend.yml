@@ -1,5 +1,8 @@
 name: Deploy frontend
-on: [push]
+on:
+  push:
+    paths:
+    - 'frontend/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
