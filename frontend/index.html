@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<title>Sports Tournament</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-</style>
-<body>
-
-<h1>Hello World</h1>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="On this website you can create or join a Tournament.">
+    <title>Sports Tournament App</title>
+    <link rel="stylesheet" href="style.css">
+    <script
+      src="https://kit.fontawesome.com/1935d064dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" style="margin-left: 5vh; margin-right: 12vh;" href="#"><h2> Sports Tournament</h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home</a>
+            <a class="nav-item nav-link" href="#">Create Tournament</a>
+            <a class="nav-item nav-link" href="#">Join Tournament</a>
+            <a class="nav-item nav-link" href="#">Admin</a>
+          </div>
+        </div>
+        <form class="form-inline" id="input-tournament-id">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" style="color: white; background-color: #4db8ff; margin-right: 5vh;" type="button">Go!</button>
+                  </span>
+                </div>
+          </form>
+      </nav>
+  </body>
 </html>
