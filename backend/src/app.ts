@@ -6,27 +6,27 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app: Application = express()
-app.use(express.static('../frontend/static/'));
 const port: number = 3001
-
 interface Tournament {
     id: string;
     name: string;
     'joining-code': number;
 }
 
+app.use(express.static('./static/'));
+
 app.get('/', async (req: Request, res: Response) => {
-    renderFile("./templates/home.html.twig", {}, (err, result) => {
+    //res.json( { hello: 'world' });
+    renderFile("views/index.twig", {}, (err, result) => {
         res.send(result);
     });
 });
 
 app.get('/create', async (req: Request, res: Response) => {
-    renderFile("./templates/createTournament.html.twig", {}, (err, result) => {
+    renderFile("views/createTournament.html.twig", {}, (err, result) => {
         res.send(result);
     });
 });
-
 
 
 app.get('/tournaments', async(req: Request, res: Response) => {

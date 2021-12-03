@@ -15,21 +15,8 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    
-    <div class="divForHome">
-     <h1 style="text-align: center; padding-top: 8vh;"><strong><u>Create a Tournament now!</u></strong></h1>
-     <button type="button" class="btn btn-primary" style="text-align: center; display: block; margin: 0 auto; margin-top: 20vh;" onclick="window.location.href='../frontend/joinTournament.html'">Click here</button>
-    </div>
-    <div class="container">
-      <div class="box1">
-        <p style="padding-left: 2vh;">First step:</p>
-      </div>
-      <div class="box2">
-        <p style="padding-left: 2vh;">Second step:</p>
-      </div>
-      <div class="box3">
-        <p style="padding-left: 2vh;">First step:</p>
-      </div>
-    </div>
+    {% include "navbar.twig" %}
+    {% block content %}
+    {% endblock %}
   </body>
 </html>

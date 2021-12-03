@@ -39,3 +39,26 @@
     border: 2px solid lightblue;
     border-radius: 25px;
 }
+
+.form-control {
+    width: 60%;
+    display: inline-block;
+}
+
+.divForHome2 {
+    margin: 10vh auto;
+    width: 75%;
+    background-color: lightskyblue;
+    height: 50vh;
+}
+
+.divForHome2 p {
+    padding: 4vh 4vh 2vh 4vh;
+    margin-bottom: 8px;
+}
+
+.divForHome2 span {
+    display: block;
+    font-size: small;
+    padding-left: 8vh;
+}
