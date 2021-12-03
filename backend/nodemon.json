@@ -1,4 +1,4 @@
 {
     "watch": "../**",
-    "ext": "ts, html, css"
+    "ext": "ts, html, css, twig"
 }
