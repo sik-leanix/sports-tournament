@@ -16,13 +16,13 @@ interface Tournament {
 }
 
 app.get('/', async (req: Request, res: Response) => {
-    renderFile("../frontend/home.html.twig", {}, (err, result) => {
+    renderFile("./templates/home.html.twig", {}, (err, result) => {
         res.send(result);
     });
 });
 
 app.get('/create', async (req: Request, res: Response) => {
-    renderFile("../frontend/createTournament.html.twig", {}, (err, result) => {
+    renderFile("./templates/createTournament.html.twig", {}, (err, result) => {
         res.send(result);
     });
 });
