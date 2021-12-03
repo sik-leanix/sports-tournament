@@ -16,10 +16,13 @@ interface Tournament {
 }
 
 app.get('/', async (req: Request, res: Response) => {
+    renderFile("../frontend/home.html.twig", {}, (err, result) => {
+        res.send(result);
+    });
+});
 
-    const query = pg.select("id", "name").from<Tournament>("tournament");
-    const tournaments = await query;
-    renderFile("../frontend/createTournament.html.twig", { tournaments: tournaments } as RenderOptions, (err, result) => {
+app.get('/create', async (req: Request, res: Response) => {
+    renderFile("../frontend/createTournament.html.twig", {}, (err, result) => {
         res.send(result);
     });
 });
