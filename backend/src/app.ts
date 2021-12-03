@@ -19,19 +19,12 @@ app.get('/', async (req: Request, res: Response) => {
 
     const query = pg.select("id", "name").from<Tournament>("tournament");
     const tournaments = await query;
-    renderFile("../frontend/index.html", { tournaments: tournaments } as RenderOptions, (err, result) => {
+    renderFile("../frontend/createTournament.html.twig", { tournaments: tournaments } as RenderOptions, (err, result) => {
         res.send(result);
     });
 });
 
-app.get('/', async (req: Request, res: Response) => {
 
-    const query = pg.select("id", "name").from<Tournament>("tournament");
-    const tournaments = await query;
-    renderFile("../frontend/joinTournament.html", { tournaments: tournaments } as RenderOptions, (err, result) => {
-        res.send(result);
-    });
-});
 
 app.get('/tournaments', async(req: Request, res: Response) => {
     const query = pg.select("id", "name").from<Tournament>("tournament");
