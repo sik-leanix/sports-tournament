@@ -68,11 +68,13 @@ gulp.task('nunjucks', function() {
   .pipe(gulp.dest(siteOutput))
 });
 
-// -----------------------------------------------------------------------------
-// Watchers
-// -----------------------------------------------------------------------------
+// Delete dist ouput
 
-gulp.task('watch', function() {
+gulp.task('clean', function() {
+  return del(['dist'])
+});
+
+const watchFiles = () => {
     // Watch the sass input folder for change,
     // and run `sass` task when something happens
     gulp.watch(input, gulp.series('sass')).on('change', function(event) {
@@ -83,41 +85,26 @@ gulp.task('watch', function() {
 
     // Watch nunjuck templates and reload browser if change
     gulp.watch(inputTemplates, gulp.series('nunjucks')).on('change', browserSync.reload);
+};
 
-});
 
 
-// -----------------------------------------------------------------------------
-// Static server
-// -----------------------------------------------------------------------------
-
-gulp.task('browser-sync', function() {
+const startDevServer = () => {
   browserSync.init({
     server: {
-      baseDir: siteOutput
+      baseDir: siteOutput,
+      port: 4200
     }
   });
-});
-
-//
-
-gulp.task('clean', function() {
-  return del(['dist'])
-});
+  watchFiles();
+}
 
 
 // -----------------------------------------------------------------------------
-// Default task
+// Dev server task
 // -----------------------------------------------------------------------------
 
-gulp.task('default', gulp.series('sass', 'nunjucks', 'scripts', 'watch'),
-function() {
-  browserSync.init({
-    server: {
-      baseDir: siteOutput
-    }
-  });
-});
+gulp.task('serve', gulp.series('sass', 'nunjucks', 'scripts', startDevServer));
 
 // Build task
 
