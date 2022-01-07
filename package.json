@@ -4,19 +4,17 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "gulp serve",
+    "start": "gulp",
     "build": "gulp build"
   },
   "author": "Sdiney Klass",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.27.7",
-    "del": "^6.0.0",
+    "browser-sync": "^2.9.11",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
-    "gulp-concat": "^2.6.1",
+    "gulp-concat": "^2.6.0",
     "gulp-nunjucks-render": "^2.2.3",
-    "gulp-sass": "^5.0.0",
-    "sass": "^1.44.0"
+    "gulp-sass": "^4.1.1"
   }
 }
