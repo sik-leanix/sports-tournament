@@ -1,6 +1,5 @@
 import express, { Application, Request, Response } from 'express'
 import { pg } from './db/database';
-import { renderFile, RenderOptions } from 'twig';
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -15,20 +14,6 @@ interface Tournament {
 
 app.use(express.static('./static/'));
 
-app.get('/', async (req: Request, res: Response) => {
-    //res.json( { hello: 'world' });
-    renderFile("views/index.twig", {}, (err, result) => {
-        res.send(result);
-    });
-});
-
-app.get('/create', async (req: Request, res: Response) => {
-    renderFile("views/createTournament.html.twig", {}, (err, result) => {
-        res.send(result);
-    });
-});
-
-
 app.get('/tournaments', async(req: Request, res: Response) => {
     const query = pg.select("id", "name").from<Tournament>("tournament");
     const tournaments = await query;
@@ -37,6 +22,6 @@ app.get('/tournaments', async(req: Request, res: Response) => {
 });
 
 app.listen(port, function () {
-    console.log(`App is listening on port ${port} !`);
+    console.log(`App is running at http://localhost:3001`);
 });
 
