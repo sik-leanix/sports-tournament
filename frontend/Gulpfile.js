@@ -8,7 +8,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var sassdoc = require('sassdoc');
 var browserSync = require('browser-sync').create();
 var nunjucksRender = require('gulp-nunjucks-render');
 var concat      = require('gulp-concat');
@@ -69,18 +68,6 @@ gulp.task('nunjucks', function() {
   // output files in dist folder
   .pipe(gulp.dest(siteOutput))
 });
-
-// -----------------------------------------------------------------------------
-// Sass documentation generation
-// -----------------------------------------------------------------------------
-
-gulp.task('sassdoc', function() {
-  return gulp
-    .src(input)
-    .pipe(sassdoc(sassdocOptions))
-    .resume();
-});
-
 
 // -----------------------------------------------------------------------------
 // Watchers
