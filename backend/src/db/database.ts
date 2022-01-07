@@ -4,9 +4,11 @@ import { databaseConfig } from './database-config';
 
 export const pool = new Pool(databaseConfig);
 
+const isProd = process.env.NODE_ENV === 'production';
+
 export const pg = knex({
   client: 'pg',
-  connection: () => databaseConfig,
+  connection: isProd ? process.env.DATABASE_URL : () => databaseConfig,
   pool: { min: 2, max: 20 }
 });
 

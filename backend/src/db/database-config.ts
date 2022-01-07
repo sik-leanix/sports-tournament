@@ -2,7 +2,6 @@
 import { Knex } from 'knex';
 
 interface ProcessEnvironmentVariables {
-  PROD?: boolean;
   POSTGRES_USER?: string;
   POSTGRES_DATABASE?: string;
   POSTGRES_HOST?: string;
@@ -20,7 +19,7 @@ const LOCAL_CONFIG = { // When changing this, also change the README.md!
 }
 
 export function getDatabaseConfig(env: ProcessEnvironmentVariables): Knex.PgConnectionConfig {
-  if (!env.PROD) {
+  if (process.env.NODE_ENV !== 'production') {
     return LOCAL_CONFIG;
   }
 
