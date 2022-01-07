@@ -1,7 +1,5 @@
 # Sport tournament backend
 
-[The local database setup is based on this article](https://www.sqlshack.com/setting-up-a-postgresql-database-on-mac/).
-
 ## Local development server
 
 Execute `npm start` to start a local server at [http://localhost:3001](http://localhost:3001).
@@ -32,6 +30,8 @@ In the early development phase we'll be changing table configurations regularly.
 npm run reset-db
 ```
 ## Setting up local database
+
+[The local database setup is based on this article](https://www.sqlshack.com/setting-up-a-postgresql-database-on-mac/).
 
 ### Installing postgres
 
@@ -83,7 +83,7 @@ CREATE DATABASE sports_tournament_dev;
 
 Now you should execute `npm run knex:migrate` to create the tables our app needs in your new database.
 
-## Starting local database
+### Starting local database
 
 Run the following command to start your local postgres service:
 
