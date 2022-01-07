@@ -24,6 +24,13 @@ npm run knex:seed
 
 You can modify/extend the test data in `src/db/seeds`.
 
+### Reset the database
+
+In the early development phase we'll be changing table configurations regularly. To not have to deal with backwards compatible migrations, there's a command to easily remove all tables and recreate them using the latest migrations:
+
+```
+npm run reset-db
+```
 ## Setting up local database
 
 ### Installing postgres
