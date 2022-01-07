@@ -1,8 +1,8 @@
 
-import { ProcessEnvironment } from './configs/config.type';
+import { Knex } from 'knex';
 
 interface ProcessEnvironmentVariables {
-  ENV?: ProcessEnvironment;
+  PROD?: boolean;
   POSTGRES_USER?: string;
   POSTGRES_DATABASE?: string;
   POSTGRES_HOST?: string;
@@ -10,16 +10,27 @@ interface ProcessEnvironmentVariables {
   POSTGRES_PASSWORD?: string;
 }
 
+const LOCAL_CONFIG = { // When changing this, also change the README.md!
+  user: 'sports_app',
+  host: 'localhost',
+  database: 'sports_tournament_dev',
+  port: parseFloat('5432'),
+  password: 'secret',
+  ssl: false
+}
 
-export function getDatabaseConfig(env: ProcessEnvironmentVariables) {
-  const environment = env.ENV || 'local';
+export function getDatabaseConfig(env: ProcessEnvironmentVariables): Knex.PgConnectionConfig {
+  if (!env.PROD) {
+    return LOCAL_CONFIG;
+  }
+
   return {
-    user: env.POSTGRES_USER ?? 'pgadminuser',
-    host: env.POSTGRES_HOST ?? 'localhost',
-    database: env.POSTGRES_DATABASE ?? 'sports_tournament_test',
+    user: env.POSTGRES_USER,
+    host: env.POSTGRES_HOST,
+    database: env.POSTGRES_DATABASE,
     port: parseFloat(env.POSTGRES_PORT ?? '5432'),
-    password: env.POSTGRES_PASSWORD ?? 'secret',
-    ssl: environment === "production"
+    password: env.POSTGRES_PASSWORD,
+    ssl: true
   };
 }
 
