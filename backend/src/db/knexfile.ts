@@ -4,5 +4,8 @@ dotenv.config();
 
 module.exports = {
   client: 'pg',
-  connection: databaseConfig
+  connection: databaseConfig,
+  seeds: {
+    directory: './seeds/'
+  }
 };

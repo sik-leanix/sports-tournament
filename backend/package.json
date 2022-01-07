@@ -5,7 +5,8 @@
   "main": "./dist/app.js",
   "scripts": {
     "dev": "nodemon src/app.ts",
-    "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.ts",
+    "knex:migrate": "knex migrate:latest --knexfile src/db/knexfile.ts",
+    "knex:seed": "knex seed:run --knexfile src/db/knexfile.ts",
     "start": "nodemon --exec 'ts-node ./src/app.ts'"
   },
   "author": "Sidney Klass",
