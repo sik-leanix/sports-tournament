@@ -50,6 +50,16 @@ brew install postgresql
 
 If you do not want to use `brew` you can also use the [offical installer](https://www.postgresql.org/download/).
 
+#### Starting local postgres
+
+Run the following command to start your local postgres service:
+
+```
+brew services start postgresql
+```
+
+To check if your local postgres is currently running execute `brew list`.
+
 ### Configuring database
 
 Next you need to setup a new user and a development database.
@@ -83,12 +93,3 @@ CREATE DATABASE sports_tournament_dev;
 
 Now you should execute `npm run knex:migrate` to create the tables our app needs in your new database.
 
-### Starting local database
-
-Run the following command to start your local postgres service:
-
-```
-brew services start postgresql
-```
-
-To check if your local postgres is currently running execute `brew list`.
