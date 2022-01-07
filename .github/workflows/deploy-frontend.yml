@@ -1,8 +1,10 @@
 name: Deploy frontend
 on:
   push:
+    branches:
+      - main
     paths:
-    - 'frontend/**'
+      - "frontend/dist/**"
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -13,4 +15,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: frontend # The folder the action should deploy.
+          folder: frontend/dist # The folder the action should deploy.
