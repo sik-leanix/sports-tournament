@@ -5,14 +5,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app: Application = express()
-const port: number = 3001
 interface Tournament {
     id: string;
     name: string;
     'joining-code': number;
 }
 
-app.use(express.static('./static/'));
+app.set('port', (process.env.PORT || 5000));
 
 app.get('/tournaments', async(req: Request, res: Response) => {
     const query = pg.select("id", "name").from<Tournament>("tournament");
@@ -21,7 +20,7 @@ app.get('/tournaments', async(req: Request, res: Response) => {
     res.json( { tournaments });
 });
 
-app.listen(port, function () {
-    console.log(`App is running at http://localhost:3001`);
+app.listen(app.get('port'), function () {
+    console.log(`App is running at http://localhost:${app.get('port')}`);
 });
 
