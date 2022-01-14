@@ -1,4 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sports Tournament App</title>
+    <link rel="stylesheet" href="/frontend/dist/css/main.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" style="margin-left: 5vh; margin-right: 12vh" href="#"
     ><h2>Sports Tournament</h2></a
   >
@@ -38,55 +47,55 @@
 </nav>
 
 
-<body>
-
-    
-    <h1 style="text-align: center; padding-top: 8vh;">Online Tournament Management</h1>
-    <hr style="width:80%; margin: auto;">
-    <p style="text-align: center; margin-top: 2vh;">Create a Tournament and share the results online!</p>
-    <div class="divForHome2" style="height: 80vh">
-        <p style="display: inline-block"> Tournament Name:</p>
-        <input type="name" class="form-control" id="tournamentName" placeholder="Name">
-        <p>Format: </p>
-        <div id="bla"> 
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="Format" id="formatCheckBox1">
-                <label class="form-check-label" for="formatCheckBox1">
-                    Draw
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="Format" id="formatCheckBox2" checked>
-                <label class="form-check-label" for="formatCheckBox2">
-                    Kästchen
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="Format" id="formatCheckBox3" checked>
-                <label class="form-check-label" for="formatCheckBox3">
-                    Jeder gegen Jeden
-                </label>
-            </div>
+  
+<h1 style="text-align: center; padding-top: 8vh;">Online Tournament Management</h1>
+<hr style="width:80%; margin: auto;">
+<p style="text-align: center; margin-top: 2vh;">Create a Tournament and share the results online!</p>
+<div class="divForHome2" style="height: 80vh">
+    <p style="display: inline-block"> Tournament Name:</p>
+    <input type="name" class="form-control" id="tournamentName" placeholder="Name">
+    <p>Format: </p>
+    <div id="bla"> 
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Format" id="formatCheckBox1">
+            <label class="form-check-label" for="formatCheckBox1">
+                Draw
+            </label>
         </div>
-        <div>
-            <p style="display: inline-block;">Size of the team:</p>  
-            <select class="form-select" style="width: 60%; display: inline-block" aria-label="Default select example">
-                <option selected disabled>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Format" id="formatCheckBox2" checked>
+            <label class="form-check-label" for="formatCheckBox2">
+                Kästchen
+            </label>
         </div>
-        <div>
-            <p style="display: inline-block;"> Admin Code: </p>
-            <input type="password" class="form-control" id="adminCode" placeholder="Type in a personal code">
-            <span>This code is only for the admin</span>
-            <p style="display: inline-block;"> Players Code: </p>
-            <input type="password" class="form-control" id="playersCode" placeholder="Type in a ">
-            <span>This code can be shared with the participants</span>
-            <button type="button" class="btn btn-primary" style="text-align: center; display: block; margin: 0 auto; margin-top: 2vh;">Create Tournament</button>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Format" id="formatCheckBox3" checked>
+            <label class="form-check-label" for="formatCheckBox3">
+                Jeder gegen Jeden
+            </label>
         </div>
     </div>
-      
+    <div>
+        <p style="display: inline-block;">Size of the team:</p>  
+        <select class="form-select" style="width: 60%; display: inline-block" aria-label="Default select example">
+            <option selected disabled>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+    <div>
+        <p style="display: inline-block;"> Admin Code: </p>
+        <input type="password" class="form-control" id="adminCode" placeholder="Type in a personal code">
+        <span>This code is only for the admin</span>
+        <p style="display: inline-block;"> Players Code: </p>
+        <input type="password" class="form-control" id="playersCode" placeholder="Type in a ">
+        <span>This code can be shared with the participants</span>
+        <button type="button" class="btn btn-primary" style="text-align: center; display: block; margin: 0 auto; margin-top: 2vh;">Create Tournament</button>
+    </div>
+</div>
 
+
+  <script src="./js/main.js"></script>
 </body>
+</html>
