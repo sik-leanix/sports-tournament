@@ -22,7 +22,7 @@ var siteOutput = './dist';
 var input = './scss/*.scss';
 var inputMain = './scss/main.scss';
 var output = siteOutput + '/css';
-var inputTemplates = './templates/*.njk';
+var inputTemplates = ['./pages/*.njk'];
 var sassOptions = { outputStyle: 'expanded' };
 
 
@@ -59,13 +59,11 @@ gulp.task('scripts', function() {
 // -----------------------------------------------------------------------------
 
 gulp.task('nunjucks', function() {
-  nunjucksRender.nunjucks.configure(['./templates/']);
-  // Gets .html and .nunjucks files in pages
   return gulp.src(inputTemplates)
-  // Renders template with nunjucks
-  .pipe(nunjucksRender())
-  // output files in dist folder
-  .pipe(gulp.dest(siteOutput))
+    .pipe(nunjucksRender({
+      path: ['templates/']
+    }))
+    .pipe(gulp.dest(siteOutput));
 });
 
 // Delete dist ouput

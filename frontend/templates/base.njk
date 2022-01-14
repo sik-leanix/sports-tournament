@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}Sports Tournament App{% endblock %}</title>
+    <link rel="stylesheet" href="/frontend/dist/css/main.css">
+</head>
+
+<body>
+  {% include "partials/navbar.njk" %}
+
+  {% block content %}{% endblock %}
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
