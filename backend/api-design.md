@@ -7,16 +7,16 @@
 ## Routes:
 
 - [`/tournaments` (POST)](#tournaments)
-- [`/tournaments/<id>` (PUT, DELETE, GET)](#tournaments/id)
-- [`/tournaments/<id>/actions/close-registrations` (POST)](#tournaments/id/actions/close-registrations)
-- [`/tournaments/<id>/actions/open-registrations` (POST)](#tournaments/id/actions/open-registrations)
-- [`/tournaments/<id>/actions/trigger-matchmaking` (POST)](#tournaments/id/actions/trigger-matchmaking)
-- [`/tournaments/<id>/players` (POST)](#tournaments/id/player)
-- [`/tournaments/<id>/players/<id>` (PUT, DELETE, GET)](#tournaments/id/player/id)
-- [`/tournaments/<id>/registrations` (POST)](#/tournaments/id/registrations)
-- [`/tournaments/<id>/registrations/<id>` (PUT, DELETE, GET)](#/tournaments/id/registrations/id)
-- [`/tournaments/<id>/matches` (POST)](#tournaments/id/matches)
-- [`/tournaments/<id>/matches/<id>` (PUT, DELETE, GET)](#tournaments/id/matches)
+- [`/tournaments/<id>` (PUT, DELETE, GET)](#tournamentsid)
+- [`/tournaments/<id>/actions/close-registrations` (POST)](#tournamentsidactionsclose-registrations)
+- [`/tournaments/<id>/actions/open-registrations` (POST)](#tournamentsidactionsopen-registrations)
+- [`/tournaments/<id>/actions/trigger-matchmaking` (POST)](#tournamentsidactionstrigger-matchmaking)
+- [`/tournaments/<id>/players` (POST)](#tournamentsidplayer)
+- [`/tournaments/<id>/players/<id>` (PUT, DELETE, GET)](#tournamentsidplayerid)
+- [`/tournaments/<id>/registrations` (POST)](#/tournamentsidregistrations)
+- [`/tournaments/<id>/registrations/<id>` (PUT, DELETE, GET)](#/tournamentsidregistrationsid)
+- [`/tournaments/<id>/matches` (POST)](#tournamentsidmatches)
+- [`/tournaments/<id>/matches/<id>` (PUT, DELETE, GET)](#tournamentsidmatches)
 
 ## Examples:
 
