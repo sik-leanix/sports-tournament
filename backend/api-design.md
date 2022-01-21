@@ -6,6 +6,8 @@
 - `DELETE`: Delete a resource.
 ## Routes:
 
+Info: Pagination is out of scope for the first iteration of the API.
+
 - [`/tournaments` (POST)](#tournaments)
 - [`/tournaments/<id>` (PUT, DELETE, GET)](#tournamentsid)
 - [`/tournaments/<id>/actions/close-registrations` (POST)](#tournamentsidactionsclose-registrations)
@@ -108,7 +110,7 @@ Returned HTTP codes:
 
 #### GET `/tournaments/<id>/players`
 
-Gets all participans.
+Gets all participants.
 
 Returned HTTP codes:
 - 200: Request all player successful
@@ -139,7 +141,7 @@ Deletes a player from the tournament.
 Returned HTTP codes:
 - 200: Deleted participant successfully
 - 404: Tournament or player with that ID could not be found
-- 401: User not authorized\
+- 401: User not authorized
 
 ### tournaments/id/registrations
 #### POST `/tournaments/<id>/registrations`
@@ -205,7 +207,7 @@ Returned HTTP codes:
 Gets all tournament matches.
 
 Returned HTTP codes:
-- 200: Request registration successfully
+- 200: Request matches successfully
 - 404: Tournament with that ID could not be found
 
 ### tournaments/id/matches/id
