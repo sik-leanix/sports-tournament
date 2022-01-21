@@ -151,6 +151,7 @@ Player registers for the tournament. With the name and skill level.
 Returned HTTP codes:
 - 200: Created registration successfully
 - 404: Tournament with that ID could not be found
+- 401: User not authorized
 
 #### GET `/tournaments/<id>/registrations`
 
