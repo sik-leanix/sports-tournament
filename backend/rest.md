@@ -48,7 +48,7 @@ Direct addressing to a resource not e.g. to a service.
 
 ### Representation
 
-The user receive the copy of the requested resource not the resource itself.
+The user receive the copy of the requested resource not the resource itself. Only the requested data is sent in the form of a JSON object not the whole set of data from the database.
 
 ### Uniform interface
 
