@@ -6,6 +6,6 @@ export async function seed(knex: Knex): Promise<void> {
 
     // Inserts seed entries
     await knex("tournament").insert([
-        { tournament_id: "1", name: "Wimbledon", player_code: "1234", admin_code: "3456" }
+        { name: "Wimbledon", player_code: "1234", admin_code: "3456" }
     ]);
 };

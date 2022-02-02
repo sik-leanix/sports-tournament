@@ -6,7 +6,7 @@ dotenv.config();
 
 const app: Application = express()
 interface Tournament {
-    tournament_id: string;
+    id: string;
     name: string;
     player_code: string;
     admin_code: string;
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.set('port', (process.env.PORT || 8000));
 
 app.get('/tournaments', async(req: Request, res: Response) => {
-    const query = pg.select("tournament_id", "name", "player_code", "admin_code").from<Tournament>("tournament");
+    const query = pg.select("id", "name", "player_code", "admin_code").from<Tournament>("tournament");
     const tournaments = await query;
     
     res.json( { tournaments });
@@ -27,11 +27,11 @@ app.get('/tournaments', async(req: Request, res: Response) => {
 app.post('/tournaments', async(req: Request, res: Response) => {
     const body = req.body;
 
-    for (let requiredParameter of ['tournament_id', 'name', 'player_code', 'admin_code']) {
+    for (let requiredParameter of ['name', 'player_code', 'admin_code']) {
         if (!body[requiredParameter]) {
           return res
             .status(422)
-            .send({ error: `Expected format: { tournament_id: <String>, name: <String>, player_code: <String>, admin_code: <String> }. You're missing a "${requiredParameter}" property.` });
+            .send({ error: `Expected format: { name: <String>, player_code: <String>, admin_code: <String> }. You're missing a "${requiredParameter}" property.` });
         }
     }
     
@@ -46,7 +46,7 @@ app.post('/tournaments', async(req: Request, res: Response) => {
 
 app.delete('/tournaments/:id', async(req: Request, res: Response) => {
     const id = req.params.id;
-    await pg("tournament").where({ tournament_id: id}).delete();
+    await pg("tournament").where({ id: id}).delete();
     res.status(201);
     res.send("Deleted!")
 });
@@ -54,7 +54,7 @@ app.delete('/tournaments/:id', async(req: Request, res: Response) => {
 app.put('/tournaments/:id', async(req: Request, res: Response) => {
     const id = req.params.id;
     const body = req.body;
-    await pg("tournament").where({ tournament_id: id}).update(body);
+    await pg("tournament").where({ id: id}).update(body);
     res.status(201);
     res.send("Updated!")
 });
