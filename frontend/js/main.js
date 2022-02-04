@@ -1,1 +1,1 @@
-// main.js
+console.log("Loaded main.js")
