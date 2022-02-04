@@ -35,7 +35,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/">Home</a>
-      <a class="nav-item nav-link" href="/create">Create Tournament</a>
+      <a class="nav-item nav-link" href="/createTournament.html">Create Tournament</a>
       <a class="nav-item nav-link" href="#">Join Tournament</a>
       <a class="nav-item nav-link" href="#">Admin</a>
     </div>
@@ -61,17 +61,17 @@
 <h1 style="text-align: center; padding-top: 8vh;">Online Tournament Management</h1>
 <hr style="width:80%; margin: auto;">
 <p style="text-align: center; margin-top: 2vh;">Create a Tournament and share the results online!</p>
-<div class="divForHome2" style="height: 80vh">
-    <form action="http://localhost:8000/tournaments" method="post">
-        <p style="display: inline-block"> Tournament Name:</p>
-        <input type="name" name="name" class="form-control" id="tournament_name" placeholder="Name">
+<div class="divForHome2" style="height: 60vh">
+    <form id="tournament-form">
+        <label for="name" style="display: inline-block"> Tournament Name:</label>
+        <input type="text" name="name" class="form-control" id="tournament_name" placeholder="Name">
         <div>
-            <p style="display: inline-block;"> Admin Code: </p>
+            <label for="admin" style="display: inline-block;"> Admin Code: </label>
             <input type="text" class="form-control" id="admin_code" name="admin_code" placeholder="Type in a personal code">
-            <span>This code is only for the admin</span>
-            <p style="display: inline-block;"> Players Code: </p>
+            <span>This code is only for the admin.</span>
+            <label for="player_code" style="display: inline-block;"> Players Code: </label>
             <input type="text" class="form-control" id="player_code" name="player_code" placeholder="Type in a players code">
-            <span>This code can be shared with the participants</span>
+            <span>This code can be shared with the participants. It is necessary for the players in the registration prozess.</span>
             <button type="submit" value="Submit" class="btn btn-primary" style="text-align: center; display: block; margin: 0 auto; margin-top: 2vh;">Create Tournament</button>
         </div>
     </form>
@@ -79,5 +79,8 @@
 
 
   <script src="./js/main.js"></script>
+   
+ <script src="./js/createTournament.js"></script>
+ 
 </body>
 </html>

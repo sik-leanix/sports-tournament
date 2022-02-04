@@ -47,18 +47,21 @@
 }
 
 .form-control {
-  width: 60%;
+  width: 75%;
   display: inline-block;
+  margin-left: 8vh;
+  display: block;
 }
 
 .divForHome2 {
   margin: 10vh auto;
-  width: 75%;
+  width: 50%;
   background-color: lightskyblue;
   height: 50vh;
 }
 
-.divForHome2 p {
+.divForHome2 label {
+  padding-left: 8vh;
   padding: 4vh 4vh 2vh 4vh;
   margin-bottom: 8px;
 }
