@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express'
 import { pg } from './db/database';
 
+const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -32,6 +33,14 @@ app.get('/tournaments', async(req: Request, res: Response) => {
 
 app.post('/tournaments', async(req: Request, res: Response) => {
     const body = req.body;
+    const adminCode = body.admin_code;
+    const playerCode = body.player_code;
+
+    const adminHash = await bcrypt.hash(adminCode, 10);
+    const playerHash = await bcrypt.hash(playerCode, 10);
+
+    body.admin_code = adminHash;
+    body.player_code = playerHash;
 
     for (let requiredParameter of ['name', 'player_code', 'admin_code']) {
         if (!body[requiredParameter]) {
