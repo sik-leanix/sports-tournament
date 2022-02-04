@@ -46,9 +46,11 @@ gulp.task('sass', function() {
 
 gulp.task('scripts', function() {
   return gulp.src([
-	  	'js/main.js'
+	  	'js/main.js',
+      'js/createTournament.js'
   	])
     .pipe(concat({ path: 'main.js'}))
+    .pipe(concat({ path: 'createTournament.js'}))
     .pipe(browserSync.reload({stream:true}))
     .pipe(gulp.dest(siteOutput + '/js'));
 });
