@@ -1,7 +1,5 @@
-console.log("Loaded main.js")
-const form = document.getElementById("tournament-form");
 
-console.log("Loaded createTournament.js");
+const form = document.getElementById("tournament-form");
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -22,7 +20,6 @@ form.addEventListener("submit", function (event) {
             },
             body: JSON.stringify(formValues)
             });
-
             const data = await reponse.json();
             console.log(data);
         } catch(error) {

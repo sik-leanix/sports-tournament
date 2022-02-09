@@ -1,7 +1,5 @@
 const form = document.getElementById("tournament-form");
 
-console.log("Loaded createTournament.js");
-
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     const formValues = {
@@ -21,7 +19,6 @@ form.addEventListener("submit", function (event) {
             },
             body: JSON.stringify(formValues)
             });
-
             const data = await reponse.json();
             console.log(data);
         } catch(error) {
