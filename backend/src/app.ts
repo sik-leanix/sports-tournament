@@ -14,7 +14,6 @@ interface Tournament {
 }
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -50,9 +49,8 @@ app.post('/tournaments', async(req: Request, res: Response) => {
         }
     }
     
-    let tournamentIdArray = [0]; //0 will be replaced with the tournament id
     try {
-    await pg("tournament").insert(body).returning("id").then(function (id) { tournamentIdArray = id; });
+    const tournamentIdArray = await pg("tournament").insert(body).returning("id").then(function (id) { return id; });
 
     const tournamentId = tournamentIdArray[0];
     body.id = tournamentId;
