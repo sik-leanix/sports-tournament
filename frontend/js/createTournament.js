@@ -10,17 +10,23 @@ form.addEventListener("submit", function (event) {
         admin_code: form.admin_code.value
     };
 
-    fetch('http://localhost:8000/tournaments', {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formValues)
-    }).then(function(res) {
-        return res.json();
-    }).then(function(text){
-        return console.log(text)
-    }).catch(function(error) {
-        console.log(error)
-    })
+    const url = 'http://localhost:8000/tournaments';
+
+    async function post(url) {
+        try {
+            const reponse = await fetch(url, {
+                method: 'post',
+                headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formValues)
+            });
+
+            const data = await reponse.json();
+            console.log(data);
+        } catch(error) {
+            console.error(error);
+        }
+    }
+    post(url);
 });
