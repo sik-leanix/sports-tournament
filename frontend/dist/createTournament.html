@@ -18,7 +18,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" style="margin-left: 5vh; margin-right: 12vh" href="#"
+  <a class="navbar-brand" style="margin-left: 5vh; margin-right: 12vh" href="/index.html"
     ><h2>Sports Tournament</h2></a
   >
   <button
@@ -61,19 +61,16 @@
 <h1 style="text-align: center; padding-top: 8vh;">Online Tournament Management</h1>
 <hr style="width:80%; margin: auto;">
 <p style="text-align: center; margin-top: 2vh;">Create a Tournament and share the results online!</p>
-<div class="divForHome2" style="height: 60vh">
+<div id="createTournamentDiv" class="divCreateTournament" style="height: 60vh">
     <form id="tournament-form">
-        <label for="name" style="display: inline-block"> Tournament Name:</label>
-        <input type="text" name="name" class="form-control" id="tournament_name" placeholder="Name">
-        <div>
-            <label for="admin" style="display: inline-block;"> Admin Code: </label>
-            <input type="text" class="form-control" id="admin_code" name="admin_code" placeholder="Type in a personal code">
+            <label for="name"> Tournament Name:</label>
+            <input type="text" name="name" class="form-control" placeholder="Name...">
+            <label for="description"> Description: </label>
+            <input type="text" class="form-control" name="description" placeholder="Description...">
+            <label for="admin" > Admin Code: </label>
+            <input type="text" class="form-control" name="admin_code" placeholder="Admin code...">
             <span>This code is only for the admin.</span>
-            <label for="player_code" style="display: inline-block;"> Players Code: </label>
-            <input type="text" class="form-control" id="player_code" name="player_code" placeholder="Type in a players code">
-            <span>This code can be shared with the participants. It is necessary for the players in the registration prozess.</span>
-            <button type="submit" value="Submit" class="btn btn-primary" style="text-align: center; display: block; margin: 0 auto; margin-top: 2vh;">Create Tournament</button>
-        </div>
+            <button type="button" style="display: block" id="nextButton" class="btn btn-primary">Next</button>
     </form>
 </div>
 

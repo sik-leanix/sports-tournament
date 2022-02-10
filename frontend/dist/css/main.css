@@ -4,7 +4,7 @@
           justify-content: end;
 }
 
-.divForHome {
+.divIndex {
   margin: 10vh auto;
   width: 75%;
   background-color: lightskyblue;
@@ -53,23 +53,38 @@
   display: block;
 }
 
-.divForHome2 {
+.divCreateTournament {
   margin: 10vh auto;
   width: 50%;
   background-color: lightskyblue;
   height: 50vh;
 }
 
-.divForHome2 label {
+.divCreateTournament label {
   padding-left: 8vh;
   padding: 4vh 4vh 2vh 4vh;
   margin-bottom: 8px;
+  display: inline-block;
 }
 
-.divForHome2 span {
+.divCreateTournament span {
   display: block;
   font-size: small;
   padding-left: 8vh;
+}
+
+form button {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  margin-top: 2vh;
+  display: block;
+}
+
+.tournamentComplete {
+  margin-top: 5vh;
+  text-align: center;
+  display: block;
 }
 
 html, body {
