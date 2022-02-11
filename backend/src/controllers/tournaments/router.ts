@@ -1,13 +1,13 @@
 import express from "express";
-import { postTournament } from "./post-tournament";
-import { getTournamets } from "./get-tournaments";
-import { deleteTournament } from "./delete-tournament";
-import { putTournament } from "./put-tournament";
+import { postTournamentController } from "./post-tournament.controller.";
+import { getTournametsController } from "./get-tournaments.controller.";
+import { deleteTournamentController } from "./delete-tournament.controller";
+import { putTournamentController } from "./put-tournament.controller.";
 
 export const tournamentRoute = express.Router();
 
-tournamentRoute.get("/", getTournamets);
-tournamentRoute.post("/", postTournament);
+tournamentRoute.get("/", getTournametsController);
+tournamentRoute.post("/", postTournamentController);
 
-tournamentRoute.delete("/:id", deleteTournament);
-tournamentRoute.put("/:id", putTournament);
+tournamentRoute.delete("/:id", deleteTournamentController);
+tournamentRoute.put("/:id", putTournamentController);

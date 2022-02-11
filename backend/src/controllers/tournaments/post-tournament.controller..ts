@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { createTournamentDal } from './dal';
+import { createTournament } from './tournament.dao';
 
 const bcrypt = require('bcrypt');
 
-export const postTournament = async(req: Request, res: Response) => {
+export const postTournamentController = async(req: Request, res: Response) => {
     const body = req.body;
     const adminCode = body.admin_code;
     const playerCode = body.player_code;
@@ -23,7 +23,7 @@ export const postTournament = async(req: Request, res: Response) => {
     }
     
     try {
-        const createdTournament = createTournamentDal(body);
+        const createdTournament = await createTournament(body);
         res.json(createdTournament);
         res.status(201);
     } catch (error) {
