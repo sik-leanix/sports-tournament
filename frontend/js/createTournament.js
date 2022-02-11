@@ -9,7 +9,6 @@ button.addEventListener("click", () => {
         description: form.description.value,
         admin_code: form.admin_code.value
     };
-    console.log(formValues)
     formSite2();
 })
 
@@ -19,7 +18,6 @@ form.addEventListener("submit", function (event) {
     formValues.url_slug = form.url_slug.value;
     formValues.player_code = form.player_code.value;
 
-    console.log(formValues);
     const url = 'http://localhost:8000/tournaments';
 
     async function post(url) {
@@ -32,7 +30,6 @@ form.addEventListener("submit", function (event) {
             body: JSON.stringify(formValues)
             });
             const data = await reponse.json();
-            console.log(data);
         } catch(error) {
             console.error(error);
         }
