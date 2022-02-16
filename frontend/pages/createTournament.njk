@@ -7,11 +7,14 @@
 <div id="createTournamentDiv" class="divCreateTournament" style="height: 60vh">
     <form id="tournament-form">
             <label for="name"> Tournament Name:</label>
-            <input type="text" name="name" class="form-control" placeholder="Name...">
+            <input id="inputName" type="text" name="name" class="form-control" placeholder="Name...">
+            <span id="inputValidationName"></span>
             <label for="description"> Description: </label>
-            <input type="text" class="form-control" name="description" placeholder="Description...">
+            <input id="inputDescription" type="text" class="form-control" name="description" placeholder="Description...">
+            <span id="inputValidationDescription"></span>
             <label for="admin" > Admin Code: </label>
-            <input type="text" class="form-control" name="admin_code" placeholder="Admin code...">
+            <input id="inputAdminCode" type="text" class="form-control" name="admin_code" placeholder="Admin code...">
+            <span id="inputValidationAdminCode"></span>
             <span>This code is only for the admin.</span>
             <button type="button" style="display: block" id="nextButton" class="btn btn-primary">Next</button>
     </form>
