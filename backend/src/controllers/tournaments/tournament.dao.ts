@@ -20,7 +20,7 @@ export async function deleteTournament(id: string):Promise<void> {
 
 
 export async function getTournamets(): Promise <Tournament[]> {
-    const tournament = await pg.table<Tournament>("tournament").select("id", "name", "player_code", "admin_code", "url_slug", "description", "status").from<Tournament>("tournament");
+    const tournament = await pg.table<Tournament>("tournament").select("id", "name", "player_code", "admin_code", "url_slug", "description", "status");
     return tournament
 }
 
@@ -29,4 +29,9 @@ export async function createTournament(createTournamentData :CreateTournamentDat
     //TODO: Input validation
     const tournaments = await pg.table<Tournament>("tournament").insert(createTournamentData).returning(["id", "name", "description", "url_slug"]);
     return tournaments?.[0];
+}
+
+export async function getTournamet(id: string): Promise <void> {
+    const data = await pg.table<Tournament>("tournament").select("id", "name", "description", "url_slug").where('id', id);
+    console.log(data);
 }
