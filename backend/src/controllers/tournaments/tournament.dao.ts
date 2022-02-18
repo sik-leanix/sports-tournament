@@ -3,14 +3,8 @@ import { pg } from "../../db/database";
 
 export async function updateTournament(body: CreateTournamentData, id: string): Promise<Tournament> {
     await pg("tournament").where({ id: id}).update(body);
-    //TODO: Input validation
-    const updatedTournament = {
-        id: id,
-        name: body.name,
-        description: body.description,
-        status: body.status,
-        url_slug: body.url_slug
-    }
+    const data = await pg.table<Tournament>("tournament").select("id", "name", "description", "url_slug").where('id', id);
+    const updatedTournament = data[0];
     return updatedTournament
 }
 
@@ -26,7 +20,6 @@ export async function getTournamets(): Promise <Tournament[]> {
 
 
 export async function createTournament(createTournamentData :CreateTournamentData): Promise <Tournament> {
-    //TODO: Input validation
     const tournaments = await pg.table<Tournament>("tournament").insert(createTournamentData).returning(["id", "name", "description", "url_slug"]);
     return tournaments?.[0];
 }
