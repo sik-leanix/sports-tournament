@@ -23,7 +23,7 @@
               "description": "The id of the tournament",
               "required": true,
               "schema": {
-                "type": "integer"
+                "type": "string"
               }
             }
           ],
@@ -64,7 +64,7 @@
               "description": "The id of the tournament",
               "required": true,
               "schema": {
-                "type": "integer"
+                "type": "string"
               }
             }
           ],
@@ -112,7 +112,7 @@
               "description": "The id of the tournament",
               "required": true,
               "schema": {
-                "type": "integer"
+                "type": "string"
               }
             }
           ],
