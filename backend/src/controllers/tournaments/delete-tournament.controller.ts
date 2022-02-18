@@ -6,4 +6,5 @@ export const deleteTournamentController= async(req: Request, res: Response) => {
     const id = req.params.id;
     await deleteTournament(id)
     res.status(204);
+    res.end();
 };
