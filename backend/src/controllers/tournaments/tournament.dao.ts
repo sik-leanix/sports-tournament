@@ -31,7 +31,8 @@ export async function createTournament(createTournamentData :CreateTournamentDat
     return tournaments?.[0];
 }
 
-export async function getTournamet(id: string): Promise <void> {
+export async function getTournamet(id: string): Promise <Tournament> {
     const data = await pg.table<Tournament>("tournament").select("id", "name", "description", "url_slug").where('id', id);
-    console.log(data);
+    const tournament = data[0];
+    return tournament
 }
