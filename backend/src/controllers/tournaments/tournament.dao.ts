@@ -14,7 +14,7 @@ export async function deleteTournament(id: string):Promise<void> {
 
 
 export async function getTournamets(): Promise <Tournament[]> {
-    const tournament = await pg.table<Tournament>("tournament").select("id", "name", "player_code", "admin_code", "url_slug", "description", "status");
+    const tournament = await pg.table<Tournament>("tournament").select("id", "name", "url_slug", "description", "status");
     return tournament
 }
 
