@@ -55,7 +55,7 @@ const validationValueLength = (inputElement, spanElement, message) => {
 
 const validateAdminCode = () => {
     const value = inputAdminCode.value;
-    if (value.match(/^[0-9]+$/)  && value.length > 3) {
+    if (value.length > 7) {
         inputAdminCode.style.borderColor = "";
         inputAdminCode.style.borderWidth = "";
         spanAdminCode.textContent = "The code is good!";
@@ -67,7 +67,7 @@ const validateAdminCode = () => {
     } else {
         inputAdminCode.style.borderWidth = "2px";
         inputAdminCode.style.borderColor = "red";
-        spanAdminCode.textContent = "The code must consist of at least four numbers";
+        spanAdminCode.textContent = "Passwords must be at least 8 characters.";
         spanAdminCode.style.color = "red";
         inputCorrectAdminCode = false;
         button.disabled = true;

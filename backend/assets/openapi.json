@@ -220,19 +220,19 @@
             },
             "player_code": {
               "type": "string",
-              "minLength": 4
+              "minLength": 8
             },
             "admin_code": {
                 "type": "string",
-                "minLength": 4
+                "minLength": 8
             },
             "url_slug": {
                 "type": "string",
-                "maxLength": 15,
+                "maxLength": 40,
                 "minLength": 3
             }
           },
-          "required": ["name", "description", "url_slug" ]
+          "required": ["name", "description"]
         },
         "UpdateTournament": {
           "type": "object",
