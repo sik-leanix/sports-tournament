@@ -6,13 +6,16 @@ const bcrypt = require('bcrypt');
 
 export const postTournamentController = async(req: Request, res: Response) => {
     const body = req.body;
+    const name = body.name;
     const adminCode = body.admin_code;
     const playerCode = body.player_code;
 
     body.id = uuidv4();
 
-    const adminHash = await bcrypt.hash(adminCode, 10);
-    const playerHash = await bcrypt.hash(playerCode, 10);
+    if(!body.url_slug) {
+        let urlSlug = name.trim().replace(/\s+/g, '-').toLowerCase();
+        body.url_slug = urlSlug;
+    }
 
     if (playerCode) {
         const playerHash = await bcrypt.hash(playerCode, 10);
