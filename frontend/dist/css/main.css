@@ -47,22 +47,18 @@
 }
 
 .form-control {
-  width: 75%;
-  display: inline-block;
-  margin-left: 8vh;
   display: block;
 }
 
 .divCreateTournament {
-  margin: 10vh auto;
+  margin: 5vh auto;
   width: 50%;
-  background-color: lightskyblue;
   height: 50vh;
 }
 
 .divCreateTournament label {
   padding-left: 8vh;
-  padding: 4vh 4vh 2vh 4vh;
+  padding: 4vh 4vh 2vh 0;
   margin-bottom: 8px;
   display: inline-block;
 }
@@ -70,15 +66,11 @@
 .divCreateTournament span {
   display: block;
   font-size: small;
-  padding-left: 8vh;
+  padding-left: 0;
 }
 
 form button {
-  text-align: center;
-  display: block;
   margin: 0 auto;
-  margin-top: 2vh;
-  display: block;
 }
 
 .tournamentComplete {
