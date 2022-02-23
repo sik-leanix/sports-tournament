@@ -9,12 +9,18 @@ export const postTournamentController = async(req: Request, res: Response) => {
     const adminCode = body.admin_code;
     const playerCode = body.player_code;
 
+    body.id = uuidv4();
+
     const adminHash = await bcrypt.hash(adminCode, 10);
     const playerHash = await bcrypt.hash(playerCode, 10);
 
-    body.id = uuidv4();
+    if (playerCode) {
+        const playerHash = await bcrypt.hash(playerCode, 10);
+        body.player_code = playerHash;
+    }
+
+    const adminHash = await bcrypt.hash(adminCode, 10);
     body.admin_code = adminHash;
-    body.player_code = playerHash;
     
     try {
         const createdTournament = await createTournament(body);
