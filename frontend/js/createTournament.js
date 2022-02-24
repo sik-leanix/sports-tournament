@@ -135,7 +135,7 @@ form.addEventListener("submit", function (event) {
 
         const url = 'http://localhost:8000/tournaments';
         post(url);
-        createTournamentCompletion();
+        //createTournamentCompletion();
     }
 });
 

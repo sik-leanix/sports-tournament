@@ -2,21 +2,27 @@
 
 {% block content %}
 <h1 style="text-align: center; padding-top: 8vh;">Online Tournament Management</h1>
-<hr style="width:80%; margin: auto;">
+<hr style="width:500px; margin: auto;">
 <p style="text-align: center; margin-top: 2vh;">Create a Tournament and share the results online!</p>
 <div id="createTournamentDiv" class="divCreateTournament" style="height: 60vh">
-    <form id="tournament-form">
-            <label for="name"> Tournament Name:</label>
-            <input id="inputName" type="text" name="name" class="form-control" placeholder="Name...">
-            <span id="inputValidationName"></span>
-            <label for="description"> Description: </label>
-            <input id="inputDescription" type="text" class="form-control" name="description" placeholder="Description...">
-            <span id="inputValidationDescription"></span>
-            <label for="admin" > Admin Code: </label>
-            <input id="inputAdminCode" type="text" class="form-control" name="admin_code" placeholder="Admin code...">
-            <span id="inputValidationAdminCode"></span>
-            <span>This code is only for the admin.</span>
-            <button type="submit" style="display: block" id="submitButton" class="btn btn-primary">Submit</button>
+    <form>
+    <div class="form-group" id="tournament-form">
+        <label for="name">Tournament Name:</label>
+        <input type="text" class="form-control" id="inputName" name="name">
+        <small id="inputValidationName" class="form-text"></small>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" class="form-control" id="inputDescription" name="description"></textarea>
+        <small id="inputValidationDescription" class="form-text"></small>
+    </div>
+    <div class="form-group">
+        <label for="admin">Admin Code:</label>
+        <input type="text" class="form-control" id="inputAdminCode" name="admin_code">
+        <small id="inputValidationAdminCode" class="form-text"></small>
+        <small class="form-text text-muted" style="display: block;">This code is only for the admin.</small>
+    </div>
+    <button type="submit" style="display: block; margin-top: 50px" id="submitButton" class="btn btn-primary">Submit</button>
     </form>
 </div>
 {% endblock %}

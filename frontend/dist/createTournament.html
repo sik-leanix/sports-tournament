@@ -13,67 +13,63 @@
   <style>
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" style="margin-left: 5vh; margin-right: 12vh" href="/index.html"
-    ><h2>Sports Tournament</h2></a
-  >
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/">Home</a>
-      <a class="nav-item nav-link" href="/createTournament.html">Create Tournament</a>
-      <a class="nav-item nav-link" href="#">Join Tournament</a>
-      <a class="nav-item nav-link" href="#">Admin</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Tournament App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/createTournament.html">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Join Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
   </div>
-  <form class="form-inline" id="input-tournament-id">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for..." />
-      <span class="input-group-btn">
-        <button
-          class="btn btn-default"
-          style="color: white; background-color: #4db8ff; margin-right: 5vh"
-          type="button"
-        >
-          Go!
-        </button>
-      </span>
-    </div>
-  </form>
 </nav>
-
 
   
 <h1 style="text-align: center; padding-top: 8vh;">Online Tournament Management</h1>
-<hr style="width:80%; margin: auto;">
+<hr style="width:500px; margin: auto;">
 <p style="text-align: center; margin-top: 2vh;">Create a Tournament and share the results online!</p>
 <div id="createTournamentDiv" class="divCreateTournament" style="height: 60vh">
-    <form id="tournament-form">
-            <label for="name"> Tournament Name:</label>
-            <input id="inputName" type="text" name="name" class="form-control" placeholder="Name...">
-            <span id="inputValidationName"></span>
-            <label for="description"> Description: </label>
-            <input id="inputDescription" type="text" class="form-control" name="description" placeholder="Description...">
-            <span id="inputValidationDescription"></span>
-            <label for="admin" > Admin Code: </label>
-            <input id="inputAdminCode" type="text" class="form-control" name="admin_code" placeholder="Admin code...">
-            <span id="inputValidationAdminCode"></span>
-            <span>This code is only for the admin.</span>
-            <button type="submit" style="display: block" id="submitButton" class="btn btn-primary">Submit</button>
+    <form>
+    <div class="form-group" id="tournament-form">
+        <label for="name">Tournament Name:</label>
+        <input type="text" class="form-control" id="inputName" name="name">
+        <small id="inputValidationName" class="form-text"></small>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" class="form-control" id="inputDescription" name="description"></textarea>
+        <small id="inputValidationDescription" class="form-text"></small>
+    </div>
+    <div class="form-group">
+        <label for="admin">Admin Code:</label>
+        <input type="text" class="form-control" id="inputAdminCode" name="admin_code">
+        <small id="inputValidationAdminCode" class="form-text"></small>
+        <small class="form-text text-muted" style="display: block;">This code is only for the admin.</small>
+    </div>
+    <button type="submit" style="display: block; margin-top: 50px" id="submitButton" class="btn btn-primary">Submit</button>
     </form>
 </div>
 

@@ -1,7 +1,4 @@
 // main.scss
-#input-tournament-id {
-    justify-content: end;
-}
 
 .divIndex {
     margin: 10vh auto;
@@ -46,15 +43,12 @@
 }
 
 .divCreateTournament {
-    margin: 5vh auto;
-    width: 50%;
-    height: 50vh;
-    //border: solid;
+    margin: 65px auto;
+    width: 500px;
 }
 
 .divCreateTournament label {
-    padding-left: 8vh;
-    padding: 4vh 4vh 2vh 0;
+    padding: 8px 0;
     margin-bottom: 8px;
     display: inline-block;
 }
@@ -74,6 +68,21 @@ form button {
     text-align: center;
     display: block;
 }
+@media (max-width: 576px) { 
+    .form-control {
+        display: block;
+    }
+    form {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    .divCreateTournament {
+        width: 99%;
+    }
+    hr {
+        width: 10%;
+    }
+ }
 
 // Imports
 @import 'base';
