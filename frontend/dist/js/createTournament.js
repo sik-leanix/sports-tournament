@@ -13,6 +13,7 @@ const spanAdminCode = document.getElementById("inputValidationAdminCode");
 let inputCorrectName = false;
 let inputCorrectDescription = false;
 let inputCorrectAdminCode = false;
+button.disabled = true;
 
 const checkIfAllInputsAreCorrect = () => {
     if (inputCorrectName && inputCorrectDescription && inputCorrectAdminCode) {
@@ -94,16 +95,6 @@ inputName.addEventListener("input", validationValueLengthWithName);
 inputDescription.addEventListener("input", validationValueLengthWithDescription);
 inputAdminCode.addEventListener("input", validateAdminCode);
 
-const createTournamentCompletion = () => {
-    div.innerHTML = `
-    <h3 style="display: block; text-align: center; padding-top: 10vh; margin: 0 0 15vh 0"> You successfully created a tournament! </h3>
-    <p class="tournamentComplete">You can reach the tournament under: </p>
-    `;
-};
-
-
-
-
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -127,15 +118,16 @@ form.addEventListener("submit", function (event) {
                 },
                 body: JSON.stringify(formValues)
                 });
-                const data = await reponse.json();
+                return reponse.json();
             } catch(error) {
                 console.error(error);
+                return null
             }
         }
 
         const url = 'http://localhost:8000/tournaments';
         post(url);
-        //createTournamentCompletion();
+        alert("Successfully created tournament " + formValues.name)
     }
 });
 
