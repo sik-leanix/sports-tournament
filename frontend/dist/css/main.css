@@ -65,6 +65,10 @@ form button {
   margin: 0 auto;
 }
 
+hr {
+  width: 500px;
+}
+
 .tournamentComplete {
   margin-top: 5vh;
   text-align: center;
@@ -86,7 +90,7 @@ form button {
   }
 
   hr {
-    width: 10%;
+    width: 30%;
   }
 }
 html, body {
