@@ -2,10 +2,12 @@ const form = document.getElementById("tournament-form");
 const button = document.getElementById("submitButton");
 const div = document.getElementById("createTournamentDiv");
 
+const inputUrlSlug = document.getElementById("inputUrlSlug");
 const inputName = document.getElementById("inputName");
 const inputDescription = document.getElementById("inputDescription");
 const inputAdminCode = document.getElementById("inputAdminCode");
 
+const spanUrlSlug = document.getElementById("inputValidationUrlSlug");
 const spanName = document.getElementById("inputValidationName");
 const spanDescription = document.getElementById("inputValidationDescription");
 const spanAdminCode = document.getElementById("inputValidationAdminCode");
@@ -94,6 +96,26 @@ const validationValueLengthWithDescription = () => {
 inputName.addEventListener("input", validationValueLengthWithName);
 inputDescription.addEventListener("input", validationValueLengthWithDescription);
 inputAdminCode.addEventListener("input", validateAdminCode);
+inputUrlSlug.addEventListener("input", function () {
+    const value = inputUrlSlug.value;
+    inputUrlSlug.value = value.replace(/\s+/g, '-').toLowerCase();
+    if (inputUrlSlug.value.length < 3 || inputUrlSlug.value.length > 40) {
+        inputUrlSlug.style.borderWidth = "2px";
+        inputUrlSlug.style.borderColor = "red";
+        spanUrlSlug.textContent = "Passwords must be at least 3 and no more than 40 characters long";
+        spanUrlSlug.style.color = "red";
+        button.disabled = true;
+    } else {
+        inputUrlSlug.style.borderColor = "";
+        inputUrlSlug.style.borderWidth = "";
+        spanUrlSlug.textContent = "";
+        button.disabled = false;
+    }
+})
+
+
+const urlSlugDiv = document.getElementById("urlSlugDiv");
+
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -109,16 +131,28 @@ form.addEventListener("submit", function (event) {
             admin_code: adminCode
         };
 
+        if (urlSlugDiv.style.visibility === "visible") {
+            formValues.url_slug = form.url_slug.value;
+        }
+
         async function post(url) {
             try {
-                const reponse = await fetch(url, {
+                const response = await fetch(url, {
                     method: 'post',
                     headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formValues)
                 });
-                return reponse.json();
+
+                if (response.status === 500 && urlSlugDiv.style.visibility === "visible") {
+                    alert("The url-slug is already used!")
+                } else if (response.status != 200) {
+                    urlSlugDiv.style.visibility = "visible";
+                } else {
+                    alert("Successfully created tournament " + formValues.name);
+                }
+                return response.json();
             } catch(error) {
                 console.error(error);
                 return null
@@ -127,7 +161,6 @@ form.addEventListener("submit", function (event) {
 
         const url = 'http://localhost:8000/tournaments';
         post(url);
-        alert("Successfully created tournament " + formValues.name)
     }
 });
 

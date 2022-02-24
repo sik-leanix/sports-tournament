@@ -5,22 +5,28 @@
 <hr style="margin: auto;">
 <p style="text-align: center; margin-top: 2vh;">Create a Tournament and share the results online!</p>
 <div id="createTournamentDiv" class="divCreateTournament" style="height: 60vh">
-    <form id="tournament-form">
+    <form autocomplete="false" id="tournament-form">
     <div class="form-group" id="tournament-form">
         <label for="name">Tournament Name:</label>
-        <input type="text" class="form-control" id="inputName" name="name">
+        <input autocomplete="false" type="text" class="form-control" id="inputName" name="name">
         <small id="inputValidationName" class="form-text"></small>
     </div>
     <div class="form-group">
         <label for="description">Description:</label>
-        <textarea type="text" class="form-control" id="inputDescription" name="description"></textarea>
+        <textarea autocomplete="false" type="text" class="form-control" id="inputDescription" name="description"></textarea>
         <small id="inputValidationDescription" class="form-text"></small>
     </div>
     <div class="form-group">
         <label for="admin">Admin Code:</label>
-        <input type="text" class="form-control" id="inputAdminCode" name="admin_code">
+        <input autocomplete="false" type="text" class="form-control" id="inputAdminCode" name="admin_code">
         <small id="inputValidationAdminCode" class="form-text"></small>
         <small class="form-text text-muted" style="display: block;">This code is only for the admin.</small>
+    </div>
+    <div class="form-group" id="urlSlugDiv" style="visibility: hidden">
+        <label for="url_slug">Url Slug:</label>
+        <input autocomplete="false" type="text" class="form-control" id="inputUrlSlug" name="url_slug">
+        <small id="inputValidationUrlSlug" class="form-text"></small>
+        <small class="form-text text-muted" style="display: block;">The auto creation was not successful. Please type in a url slug.</small>
     </div>
     <button type="submit" style="display: block; margin-top: 50px" id="submitButton" class="btn btn-primary">Submit</button>
     </form>

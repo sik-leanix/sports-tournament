@@ -6,7 +6,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string('name', 250).notNullable();
     table.string('admin_code', 250).notNullable();
     table.string('player_code', 250);
-    table.string('url_slug', 250)
+    table.string('url_slug', 250).unique({indexName:'unique_url_slug'});
     table.string('description', 250)
     table.string('status', 250)
   });
