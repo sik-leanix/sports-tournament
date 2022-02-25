@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbarContent">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link {% if page_title == "home" %} active {% endif %}" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/createTournament.html">Create Tournament</a>
+          <a class="nav-link {% if page_title == "createTournament" %} active {% endif %}" href="/createTournament.html">Create Tournament</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Join Tournament</a>
