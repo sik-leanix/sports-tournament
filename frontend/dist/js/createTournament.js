@@ -102,14 +102,12 @@ inputUrlSlug.addEventListener("input", function () {
     if (inputUrlSlug.value.length < 3 || inputUrlSlug.value.length > 40) {
         inputUrlSlug.style.borderWidth = "2px";
         inputUrlSlug.style.borderColor = "red";
-        spanUrlSlug.textContent = "Passwords must be at least 3 and no more than 40 characters long";
+        spanUrlSlug.textContent = "The url slug must be at least 3 and no more than 40 characters long";
         spanUrlSlug.style.color = "red";
-        button.disabled = true;
     } else {
         inputUrlSlug.style.borderColor = "";
         inputUrlSlug.style.borderWidth = "";
         spanUrlSlug.textContent = "";
-        button.disabled = false;
     }
 })
 
@@ -131,36 +129,36 @@ form.addEventListener("submit", function (event) {
             admin_code: adminCode
         };
 
-        if (urlSlugDiv.style.visibility === "visible") {
-            formValues.url_slug = form.url_slug.value;
-        }
+    if (urlSlugDiv.style.display === "block") {
+        formValues.url_slug = form.url_slug.value;
+    }
 
-        async function post(url) {
-            try {
-                const response = await fetch(url, {
-                    method: 'post',
-                    headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formValues)
-                });
+    async function post(url) {
+        try {
+            const response = await fetch(url, {
+                method: 'post',
+                headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formValues)
+            });
 
-                if (response.status === 500 && urlSlugDiv.style.visibility === "visible") {
-                    alert("The url-slug is already used!")
-                } else if (response.status != 200) {
-                    urlSlugDiv.style.visibility = "visible";
-                } else {
-                    alert("Successfully created tournament " + formValues.name);
-                }
-                return response.json();
-            } catch(error) {
-                console.error(error);
-                return null
+            if (response.status === 500 && urlSlugDiv.style.display === "block") {
+                alert("The url-slug is already used!")
+            } else if (response.status != 200) {
+                urlSlugDiv.style.display = "block";
+            } else {
+                alert("Successfully created tournament " + formValues.name);
             }
+            return response.json();
+        } catch(error) {
+            console.error(error);
+            return null
         }
+    }
 
-        const url = 'http://localhost:8000/tournaments';
-        post(url);
+    const url = 'http://localhost:8000/tournaments';
+    post(url);
     }
 });
 
