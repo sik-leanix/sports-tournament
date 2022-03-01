@@ -1,6 +1,8 @@
-import { Request, Response } from 'express';
+import { Request, response, Response } from 'express';
 import { createTournament } from './tournament.dao';
 import { v4 as uuidv4 } from 'uuid';
+import { BadRequest, Forbidden, InternalServerError } from 'express-openapi-validator/dist/openapi.validator';
+import { isPostgresError, PostgresError } from '../../error-handling/postgres-error.interface';
 
 const bcrypt = require('bcrypt');
 
@@ -30,6 +32,13 @@ export const postTournamentController = async(req: Request, res: Response) => {
         res.json(createdTournament);
         res.status(201);
     } catch (error) {
-        res.status(500).json({ error });
+        if (isPostgresError(error)) {
+            if (error.constraint === 'unique_url_slug') {
+                res.status(403).json(new Forbidden({ path: "/tournament", message: error.detail }));
+            } else {
+                res.status(500).json(new InternalServerError({ path: "/tournament", message: error.detail }));
+            }
+        }
+        
     }
 };

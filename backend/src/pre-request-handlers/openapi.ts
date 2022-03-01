@@ -9,5 +9,5 @@ export const serveOpenapiSpec = express.static(spec);
 export const validateInputs = OpenApiValidator.middleware({
   apiSpec: spec,
   validateRequests: true,
-  validateResponses: true,
+  validateResponses: false,
 });

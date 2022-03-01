@@ -18,9 +18,10 @@ export async function getTournamets(): Promise <Tournament[]> {
     return tournament
 }
 
-
 export async function createTournament(createTournamentData :CreateTournamentData): Promise <Tournament> {
-    const tournaments = await pg.table<Tournament>("tournament").insert(createTournamentData).returning(["id", "name", "description", "url_slug"]);
+    const tournaments = await pg.table<Tournament>("tournament").insert(createTournamentData).returning(["id", "name", "description", "url_slug"]).catch((error) => {
+       throw error;
+    });
     return tournaments?.[0];
 }
 
