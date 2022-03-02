@@ -66,7 +66,7 @@ const validationValueLength = (inputElement, spanElement, message) => {
 
 const validateAdminCode = () => {
     const value = inputAdminCode.value;
-    if (value.length > 7) {
+    if (value.length > 7 && value.match(/^\S*$/)) {
         inputAdminCode.style.borderColor = "";
         inputAdminCode.style.borderWidth = "";
         spanAdminCode.textContent = "The code is good!";
@@ -78,7 +78,7 @@ const validateAdminCode = () => {
     } else {
         inputAdminCode.style.borderWidth = "2px";
         inputAdminCode.style.borderColor = "red";
-        spanAdminCode.textContent = "Passwords must be at least 8 characters.";
+        spanAdminCode.textContent = "Passwords must be at least 8 characters long and must not contain whitespaces.";
         spanAdminCode.style.color = "red";
         inputCorrectAdminCode = false;
         button.disabled = true;
@@ -115,7 +115,10 @@ inputUrlSlug.addEventListener("input", function () {
 const urlSlugDiv = document.getElementById("urlSlugDiv");
 
 
-form.addEventListener("submit", function (event) {
+var modal = document.getElementById("myModal");
+const modalText = document.getElementById("contentModal");
+let formValues = {};
+form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const name = form.name.value;
@@ -123,7 +126,7 @@ form.addEventListener("submit", function (event) {
     const adminCode = form.admin_code.value;
 
     if (checkIfAllInputsAreCorrect()) {
-        const formValues = {
+        formValues = {
             name: name,
             description: description,
             admin_code: adminCode
@@ -133,32 +136,42 @@ form.addEventListener("submit", function (event) {
         formValues.url_slug = form.url_slug.value;
     }
 
-    async function post(url) {
-        try {
-            const response = await fetch(url, {
-                method: 'post',
-                headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formValues)
-            });
-
-            if (response.status === 500 && urlSlugDiv.style.display === "block") {
-                alert("The url-slug is already used!")
-            } else if (response.status != 200) {
+        const url = 'http://localhost:8000/tournaments';
+        const tournament = await post(url);
+        if (tournament.errors) {
+            const message = tournament.errors[0].message;
+            if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/) && urlSlugDiv.style.display === "block") {
+                modal.style.display = "block";
+                modalText.textContent = "The url-slug is already used!"
+            } else if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/)) {
                 urlSlugDiv.style.display = "block";
-            } else {
-                alert("Successfully created tournament " + formValues.name);
-            }
-            return response.json();
-        } catch(error) {
-            console.error(error);
-            return null
+            } 
         }
     }
-
-    const url = 'http://localhost:8000/tournaments';
-    post(url);
-    }
 });
+
+async function post(url) {
+    try {
+        const response = await fetch(url, {
+            method: 'post',
+            headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formValues)
+        });
+        if (response.status === 201) {
+            modal.style.display = "block";
+            modalText.textContent = "Successfully created tournament " + formValues.name;
+        }
+        return response.json();
+    } catch(error) {
+        console.error(error);
+        return null
+    }
+}
+
+
+
+
+
 

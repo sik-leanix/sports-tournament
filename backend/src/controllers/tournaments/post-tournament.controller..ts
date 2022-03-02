@@ -29,8 +29,8 @@ export const postTournamentController = async(req: Request, res: Response) => {
     
     try {
         const createdTournament = await createTournament(body);
-        res.json(createdTournament);
         res.status(201);
+        res.json(createdTournament);
     } catch (error) {
         if (isPostgresError(error)) {
             if (error.constraint === 'unique_url_slug') {
