@@ -26,10 +26,21 @@
         <label for="url_slug">Url Slug:</label>
         <input autocomplete="false" type="text" class="form-control" id="inputUrlSlug" name="url_slug">
         <small id="inputValidationUrlSlug" class="form-text"></small>
-        <small class="form-text text-muted" style="display: block;">The auto creation was not successful. Please type in a url slug.</small>
+        <small class="form-text text-muted" style="display: block;">The auto generation was not successful. Please type in a url slug.</small>
     </div>
     <button type="submit" style="display: block; margin-top: 50px" id="submitButton" class="btn btn-primary">Submit</button>
     </form>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="contentModal"></p>
+  </div>
+
 </div>
 {% endblock %}
  {% block scripts %} 
