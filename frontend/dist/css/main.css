@@ -133,6 +133,10 @@ hr {
     font-size: 2rem;
   }
 }
+#adminCodeInfo:hover {
+  cursor: pointer;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -168,7 +172,7 @@ html, body {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 60%;
+  width: 40%;
 }
 
 /* The Close Button */
@@ -189,4 +193,11 @@ html, body {
 #contentModal {
   margin: 0 auto;
   margin-bottom: 30px;
+  white-space: pre-line;
+}
+
+@media (max-width: 576px) {
+  .modal-content {
+    width: 90%;
+  }
 }

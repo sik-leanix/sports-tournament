@@ -170,6 +170,13 @@ async function post(url) {
     }
 }
 
+const urlSlugLabel = document.getElementById("adminCodeInfo");
+
+urlSlugLabel.addEventListener("click", function () {
+    modal.style.display = "block";
+    modalText.textContent = "The url slug is a part of the url which makes the tournament accessible. \r\n Example: tournamentapp.com/url-slug";
+})
+
 
 
 

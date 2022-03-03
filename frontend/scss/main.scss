@@ -119,7 +119,11 @@ hr {
     .navbar-brand {
         font-size: 2rem;
     }
- }
+}
+
+#adminCodeInfo:hover {
+    cursor: pointer;
+}
 
 // Imports
 @import 'base';
