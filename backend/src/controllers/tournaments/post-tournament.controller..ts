@@ -14,7 +14,11 @@ export const postTournamentController = async(req: Request, res: Response) => {
 
     body.id = uuidv4();
 
-    if(!body.url_slug) {
+    if(body.url_slug) {
+        const urlSlug = body.url_slug;
+        const updatedUrlSlug = urlSlug.trim().replace(/\s+/g, '-').toLowerCase();
+        body.url_slug = updatedUrlSlug;
+    } else {
         let urlSlug = name.trim().replace(/\s+/g, '-').toLowerCase();
         body.url_slug = urlSlug;
     }
