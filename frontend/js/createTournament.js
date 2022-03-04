@@ -115,10 +115,9 @@ inputUrlSlug.addEventListener("input", function () {
 const urlSlugDiv = document.getElementById("urlSlugDiv");
 
 
-var modal = document.getElementById("myModal");
-const modalText = document.getElementById("contentModal");
+const urlSlugDiv = document.getElementById('urlSlugDiv');
 
-form.addEventListener("submit", async function (event) {
+form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     if (!checkIfAllInputsAreCorrect()) {
@@ -142,11 +141,10 @@ form.addEventListener("submit", async function (event) {
     const tournament = await postTournament(formValues);
     if (tournament.errors) {
         const message = tournament.errors[0].message;
-        if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/) && urlSlugDiv.style.display === "block") {
-            modal.style.display = "block";
-            modalText.textContent = "The url-slug is already used!"
+    if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/) && urlSlugDiv.style.display === 'block') {
+      // TODO: show red error message below url slug input "URL slug is already used."
         } else if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/)) {
-            urlSlugDiv.style.display = "block";
+      urlSlugDiv.style.display = 'block';
         } 
     }
 });
@@ -161,13 +159,13 @@ async function postTournament(data) {
         },
         body: JSON.stringify(data)
         });
+    const tournament = response.json();
         if (response.status === 201) {
-            modal.style.display = "block";
-            modalText.textContent = "Successfully created tournament " + data.name;
+      window.location.href = '/tournament/' + tournament.url_slug + '/admin';
         }
-        return response.json();
-    } catch(error) {
+    return tournament;
+  } catch (error) {
         console.error(error);
-        return null
+    return null;
     }
 }
