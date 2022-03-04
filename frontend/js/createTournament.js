@@ -117,51 +117,53 @@ const urlSlugDiv = document.getElementById("urlSlugDiv");
 
 var modal = document.getElementById("myModal");
 const modalText = document.getElementById("contentModal");
-let formValues = {};
+
 form.addEventListener("submit", async function (event) {
     event.preventDefault();
+
+    if (!checkIfAllInputsAreCorrect()) {
+        return;
+    }
 
     const name = form.name.value;
     const description = form.description.value;
     const adminCode = form.admin_code.value;
 
-    if (checkIfAllInputsAreCorrect()) {
-        formValues = {
-            name: name,
-            description: description,
-            admin_code: adminCode
-        };
+    const formValues = {
+        name: name,
+        description: description,
+        admin_code: adminCode
+    };
 
     if (urlSlugDiv.style.display === "block") {
         formValues.url_slug = form.url_slug.value;
     }
 
-        const url = 'http://localhost:8000/tournaments';
-        const tournament = await post(url);
-        if (tournament.errors) {
-            const message = tournament.errors[0].message;
-            if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/) && urlSlugDiv.style.display === "block") {
-                modal.style.display = "block";
-                modalText.textContent = "The url-slug is already used!"
-            } else if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/)) {
-                urlSlugDiv.style.display = "block";
-            } 
-        }
+    const tournament = await postTournament(formValues);
+    if (tournament.errors) {
+        const message = tournament.errors[0].message;
+        if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/) && urlSlugDiv.style.display === "block") {
+            modal.style.display = "block";
+            modalText.textContent = "The url-slug is already used!"
+        } else if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/)) {
+            urlSlugDiv.style.display = "block";
+        } 
     }
 });
 
-async function post(url) {
+async function postTournament(data) {
     try {
-        const response = await fetch(url, {
+        // TODO: change to non-localhost URL for production
+        const response = await fetch('http://localhost:8000/tournaments', {
             method: 'post',
             headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formValues)
+        body: JSON.stringify(data)
         });
         if (response.status === 201) {
             modal.style.display = "block";
-            modalText.textContent = "Successfully created tournament " + formValues.name;
+            modalText.textContent = "Successfully created tournament " + data.name;
         }
         return response.json();
     } catch(error) {
@@ -169,16 +171,3 @@ async function post(url) {
         return null
     }
 }
-
-const urlSlugLabel = document.getElementById("adminCodeInfo");
-
-urlSlugLabel.addEventListener("click", function () {
-    modal.style.display = "block";
-    modalText.textContent = "The url slug is a part of the url which makes the tournament accessible. \r\n Example: tournamentapp.com/url-slug";
-})
-
-
-
-
-
-
