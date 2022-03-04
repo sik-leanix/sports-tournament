@@ -42,6 +42,8 @@ export const postTournamentController = async(req: Request, res: Response) => {
             } else {
                 res.status(500).json(new InternalServerError({ path: "/tournament", message: error.detail }));
             }
+        } else {
+            res.status(500).json(new InternalServerError({ path: "/tournament", message: "Unexpected error occurred:" + JSON.stringify(error) }));
         }
         
     }
