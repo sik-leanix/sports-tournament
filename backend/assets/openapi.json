@@ -1,0 +1,293 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "sports-tournament-app",
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "tags": [],
+    "paths": {
+      "/tournaments/{id}": {
+        "get": {
+          "summary": "Returns a single tournament by its id",
+          "operationId": "getTournament",
+          "tags": ["Tournaments"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "The id of the tournament",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The tournament with that id",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Tournament"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Tournament not found"
+            }
+          }
+        },
+        "put": {
+          "summary": "Updates a tournament",
+          "operationId": "updateTournament",
+          "tags": ["Tournament"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "The id of the tournament",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateTournament"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "The updated tournament",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Tournament"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Deletes a single tournament by its id",
+          "operationId": "deleteTournament",
+          "tags": ["Tournament"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "The id of the tournament",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Successfully deleted"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/tournaments": {
+        "post": {
+          "summary": "Creates a new tournament",
+          "operationId": "createTournament",
+          "tags": ["Tournament"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tournament"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "The created tournament",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Tournament"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Returns a list of all tournaments",
+          "operationId": "getAllTournaments",
+          "tags": ["Tournament"],
+          "responses": {
+            "200": {
+              "description": "All tournaments",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "items": {
+                      "$ref": "#/components/schemas/Tournament"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Tournament": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 40,
+              "minLength": 3
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 500,
+              "minLength": 3
+            },
+            "player_code": {
+              "type": "string",
+              "minLength": 8
+            },
+            "admin_code": {
+                "type": "string",
+                "minLength": 8,
+                "pattern": "^\\S*$"
+            },
+            "url_slug": {
+                "type": "string",
+                "maxLength": 40,
+                "minLength": 3
+            }
+          },
+          "required": ["name", "description"]
+        },
+        "UpdateTournament": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 40,
+              "minLength": 3
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 500,
+              "minLength": 3
+            },
+            "player_code": {
+              "type": "string",
+              "minLength": 4
+            },
+            "admin_code": {
+                "type": "string",
+                "minLength": 4
+            },
+            "url_slug": {
+                "type": "string",
+                "maxLength": 15,
+                "minLength": 3
+            }
+          }
+        },
+        "BadRequestError": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "errorCode": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

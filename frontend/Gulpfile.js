@@ -22,7 +22,7 @@ var siteOutput = './dist';
 var input = './scss/*.scss';
 var inputMain = './scss/main.scss';
 var output = siteOutput + '/css';
-var inputTemplates = ['./pages/*.njk'];
+var inputTemplates = ['./pages/*.njk', './pages/tournament/*.njk' ];
 var sassOptions = { outputStyle: 'expanded' };
 
 
@@ -46,9 +46,9 @@ gulp.task('sass', function() {
 
 gulp.task('scripts', function() {
   return gulp.src([
-	  	'js/main.js'
+	  	'js/main.js',
+      'js/createTournament.js'
   	])
-    .pipe(concat({ path: 'main.js'}))
     .pipe(browserSync.reload({stream:true}))
     .pipe(gulp.dest(siteOutput + '/js'));
 });
