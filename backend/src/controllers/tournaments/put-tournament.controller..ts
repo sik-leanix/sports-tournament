@@ -7,7 +7,6 @@ export const putTournamentController =  async(req: Request, res: Response) => {
     const body = req.body;
     if (body.id) {
         res.status(400).json(new BadRequest({ path: "/tournament", message: 'Changing the ID is not allowed' }));
-        res.end();
     } else {
         const updatedBody = await updateTournament(body, id);
         res.status(200);
