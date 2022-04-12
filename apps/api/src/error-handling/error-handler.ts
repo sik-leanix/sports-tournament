@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from "express";
 
 export function sendErrorResponse(
   error: Error & { status?: number; errors?: unknown[] },

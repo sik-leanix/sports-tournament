@@ -1,96 +1,201 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "Bookmark API",
-    "version": "0.0.1"
-  },
-  "servers": [
-    {
-      "url": "/"
-    }
-  ],
-  "tags": [],
-  "paths": {
-    "/bookmarks/{id}": {
-      "put": {
-        "summary": "Updates a bookmark",
-        "operationId": "updateBookmark",
-        "tags": [
-          "Bookmarks"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "description": "The id of the bookmark",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
+    "openapi": "3.0.1",
+    "info": {
+      "title": "sports-tournament-app",
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "tags": [],
+    "paths": {
+      "/tournaments/{id}": {
+        "get": {
+          "summary": "Returns a single tournament by its id",
+          "operationId": "getTournament",
+          "tags": ["Tournaments"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "The id of the tournament",
+              "required": true,
               "schema": {
-                "$ref": "#/components/schemas/Bookmark"
+                "type": "string"
               }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The tournament with that id",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Tournament"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Tournament not found"
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "The updated bookmark",
+        "put": {
+          "summary": "Updates a tournament",
+          "operationId": "updateTournament",
+          "tags": ["Tournament"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "The id of the tournament",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Bookmark"
+                  "$ref": "#/components/schemas/UpdateTournament"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestError"
+          "responses": {
+            "200": {
+              "description": "The updated tournament",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Tournament"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Deletes a single tournament by its id",
+          "operationId": "deleteTournament",
+          "tags": ["Tournament"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "The id of the tournament",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Successfully deleted"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "summary": "Deletes a single bookmark by its id",
-        "operationId": "deleteBookmark",
-        "tags": [
-          "Bookmarks"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "description": "The id of the bookmark",
+      "/tournaments": {
+        "post": {
+          "summary": "Creates a new tournament",
+          "operationId": "createTournament",
+          "tags": ["Tournament"],
+          "requestBody": {
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successfully deleted"
-          },
-          "400": {
-            "description": "Bad request",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BadRequestError"
+                  "$ref": "#/components/schemas/Tournament"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "The created tournament",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Tournament"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Returns a list of all tournaments",
+          "operationId": "getAllTournaments",
+          "tags": ["Tournament"],
+          "responses": {
+            "200": {
+              "description": "All tournaments",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "items": {
+                      "$ref": "#/components/schemas/Tournament"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BadRequestError"
+                  }
                 }
               }
             }
@@ -98,151 +203,86 @@
         }
       }
     },
-    "/bookmarks": {
-      "post": {
-        "summary": "Creates a new bookmark",
-        "operationId": "createBookmark",
-        "tags": [
-          "Bookmarks"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Bookmark"
-              }
+    "components": {
+      "schemas": {
+        "Tournament": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 40,
+              "minLength": 3
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 500,
+              "minLength": 3
+            },
+            "player_code": {
+              "type": "string",
+              "minLength": 8
+            },
+            "admin_code": {
+                "type": "string",
+                "minLength": 8,
+                "pattern": "^\\S*$"
+            },
+            "url_slug": {
+                "type": "string",
+                "maxLength": 40,
+                "minLength": 3
+            }
+          },
+          "required": ["name", "description"]
+        },
+        "UpdateTournament": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 40,
+              "minLength": 3
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 500,
+              "minLength": 3
+            },
+            "player_code": {
+              "type": "string",
+              "minLength": 4
+            },
+            "admin_code": {
+                "type": "string",
+                "minLength": 4
+            },
+            "url_slug": {
+                "type": "string",
+                "maxLength": 15,
+                "minLength": 3
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "The created bookmark",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Bookmark"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "Gets a list of bookmarks",
-        "operationId": "getBookmarks",
-        "tags": [
-          "Bookmarks"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of bookmarks",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaginatedBookmarkResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestError"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Bookmark": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "url": {
-            "type": "string",
-            "maxLength": 500
-          },
-          "notes": {
-            "type": "string",
-            "maxLength": 1000,
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "name",
-          "url"
-        ]
-      },
-      "PaginatedBookmarkResponse": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "number",
-            "minimum": 0
-          },
-          "page": {
-            "type": "number",
-            "minimum": 0
-          },
-          "bookmarks": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Bookmark"
-            }
-          }
-        }
-      },
-      "BadRequestError": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "errorCode": {
-                  "type": "string"
-                },
-                "message": {
-                  "type": "string"
-                },
-                "path": {
-                  "type": "string"
+        "BadRequestError": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "errorCode": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -251,4 +291,3 @@
       }
     }
   }
-}

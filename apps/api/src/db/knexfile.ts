@@ -1,15 +1,13 @@
-import { environment } from '../environments/environment';
-import { defaultConnection } from './database';
+import { databaseConfig } from './database-config';
+const dotenv = require('dotenv');
+dotenv.config();
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   client: 'pg',
-  connection: environment.production
-    ? process.env.DATABASE_URL
-    : defaultConnection,
+  connection: isProd ? process.env.DATABASE_URL : databaseConfig,
   seeds: {
-    directory: __dirname + '/seeds',
-  },
-  migrations: {
-    directory: __dirname + '/migrations',
-  },
+    directory: './seeds/'
+  }
 };

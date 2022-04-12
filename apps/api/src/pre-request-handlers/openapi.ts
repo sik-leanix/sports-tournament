@@ -1,14 +1,13 @@
-import * as OpenApiValidator from 'express-openapi-validator';
-import express from 'express';
-import { environment } from '../environments/environment';
-import path from 'path';
+import path from "path";
+import * as OpenApiValidator from "express-openapi-validator";
+import * as express from "express";
 
-const openApiSpec = path.join(__dirname, '../assets/openapi.json');
+const spec = path.join("assets", "openapi.json");
 
-export const serveOpenapiSpec = express.static(openApiSpec);
+export const serveOpenapiSpec = express.static(spec);
 
 export const validateInputs = OpenApiValidator.middleware({
-  apiSpec: openApiSpec,
+  apiSpec: spec,
   validateRequests: true,
-  validateResponses: environment.production,
+  validateResponses: false,
 });

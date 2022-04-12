@@ -1,18 +1,18 @@
 import knex from 'knex';
-import { environment } from '../environments/environment';
+import { Pool } from 'pg';
+import { databaseConfig } from './database-config';
 
-export const defaultConnection = {
-  user: process.env.POSTGRES_USER ?? 'postgres',
-  host: process.env.POSTGRES_HOST ?? 'localhost',
-  database: process.env.POSTGRES_DATABASE ?? 'postgres',
-  port: parseFloat(process.env.POSTGRES_PORT ?? '5433'),
-  password: process.env.POSTGRES_PASSWORD ?? 'secret',
-};
+export const pool = new Pool(databaseConfig);
 
-export const postgres = knex({
+const isProd = process.env.NODE_ENV === 'production';
+
+export const pg = knex({
   client: 'pg',
-  connection: environment.production
-    ? process.env.DATABASE_URL
-    : () => defaultConnection,
-  pool: { min: 2, max: 20 },
+  connection: isProd ? process.env.DATABASE_URL : () => databaseConfig,
+  pool: { min: 2, max: 20 }
 });
+
+export async function accessDatabase(): Promise<boolean> {
+  const result = await pg.raw('SELECT NOW()');
+  return result.rowCount === 1;
+}
