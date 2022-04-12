@@ -1,0 +1,55 @@
+{
+  "name": "bookmark-app",
+  "version": "0.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": "16.13.1"
+  },
+  "scripts": {
+    "start": "nx serve",
+    "build": "nx build",
+    "test": "nx test",
+    "api:knex": "knex --knexfile apps/api/src/db/knexfile.ts",
+    "api:build": "tsc --project apps/api/tsconfig.app.json",
+    "api:rollback-all": "knex migrate:rollback --all --knexfile apps/api/src/db/knexfile.ts",
+    "api:build-watch": "npm run api:build -- --watch --incremental --preserveWatchOutput",
+    "api:nodemon": "nodemon dist/apps/api/main.js"
+  },
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "4.17.2",
+    "express-openapi-validator": "^4.13.5",
+    "knex": "^1.0.3",
+    "pg": "^8.7.3",
+    "tslib": "^2.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@nrwl/cli": "13.8.4",
+    "@nrwl/eslint-plugin-nx": "13.8.4",
+    "@nrwl/express": "13.8.4",
+    "@nrwl/jest": "13.8.4",
+    "@nrwl/linter": "13.8.4",
+    "@nrwl/node": "13.8.4",
+    "@nrwl/tao": "13.8.4",
+    "@nrwl/workspace": "13.8.4",
+    "@types/express": "4.17.13",
+    "@types/jest": "27.0.2",
+    "@types/node": "16.11.7",
+    "@types/pg": "^8.6.4",
+    "@types/supertest": "^2.0.11",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "~5.10.0",
+    "@typescript-eslint/parser": "~5.10.0",
+    "eslint": "~8.7.0",
+    "eslint-config-prettier": "8.1.0",
+    "jest": "27.2.3",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2",
+    "ts-jest": "27.0.5",
+    "ts-node": "^10.6.0",
+    "typescript": "~4.5.2"
+  }
+}
