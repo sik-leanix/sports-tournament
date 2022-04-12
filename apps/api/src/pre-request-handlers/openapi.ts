@@ -1,8 +1,8 @@
-import path from "path";
-import * as OpenApiValidator from "express-openapi-validator";
 import * as express from "express";
+import * as OpenApiValidator from "express-openapi-validator";
+import path from "path";
 
-const spec = path.join("assets", "openapi.json");
+const spec = path.join(__dirname, '../assets/openapi.json');
 
 export const serveOpenapiSpec = express.static(spec);
 
