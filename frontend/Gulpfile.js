@@ -10,17 +10,21 @@ var del = require('del');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var nunjucksRender = require('gulp-nunjucks-render');
+var ts = require('gulp-typescript');
+var tsProject = ts.createProject('tsconfig.json');
 var siteOutput = './dist';
 
 // -----------------------------------------------------------------------------
 // Configuration
 // -----------------------------------------------------------------------------
 
-var input = './scss/*.scss';
-var inputMain = './scss/main.scss';
-var output = siteOutput + '/css';
+var sassInput = './scss/*.scss';
+var sassInputMain = './scss/main.scss';
+var sassOutput = siteOutput + '/css';
 var inputTemplates = ['./pages/*.njk', './pages/**/*.njk'];
 var sassOptions = { outputStyle: 'expanded' };
+
+var typeScriptOutput = siteOutput + '/js';
 
 // -----------------------------------------------------------------------------
 // Sass compilation
@@ -28,10 +32,10 @@ var sassOptions = { outputStyle: 'expanded' };
 
 gulp.task('sass', function () {
   return gulp
-    .src(inputMain)
+    .src(sassInputMain)
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(gulp.dest(output))
+    .pipe(gulp.dest(sassOutput))
     .pipe(browserSync.stream());
 });
 
@@ -40,10 +44,7 @@ gulp.task('sass', function () {
 // -----------------------------------------------------------------------------
 
 gulp.task('scripts', function () {
-  return gulp
-    .src(['js/*.js'])
-    .pipe(browserSync.reload({ stream: true }))
-    .pipe(gulp.dest(siteOutput + '/js'));
+  return tsProject.src().pipe(tsProject()).js.pipe(gulp.dest(typeScriptOutput));
 });
 
 // -----------------------------------------------------------------------------
@@ -70,7 +71,7 @@ gulp.task('clean', function () {
 const watchFiles = () => {
   // Watch the sass input folder for change,
   // and run `sass` task when something happens
-  gulp.watch(input, gulp.series('sass')).on('change', function (event) {
+  gulp.watch(sassInput, gulp.series('sass')).on('change', function (event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
   });
 

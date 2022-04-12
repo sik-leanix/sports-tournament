@@ -1,16 +1,16 @@
-const form = document.getElementById('tournament-form');
-const button = document.getElementById('submitButton');
+const form = document.getElementById('tournament-form') as HTMLFormElement;
+const button = document.getElementById('submitButton') as HTMLButtonElement;
 const div = document.getElementById('createTournamentDiv');
 
-const inputUrlSlug = document.getElementById('inputUrlSlug');
-const inputName = document.getElementById('inputName');
-const inputDescription = document.getElementById('inputDescription');
-const inputAdminCode = document.getElementById('inputAdminCode');
+const inputUrlSlug = document.getElementById('inputUrlSlug') as HTMLInputElement;
+const inputName = document.getElementById('inputName') as HTMLInputElement;
+const inputDescription = document.getElementById('inputDescription') as HTMLInputElement;
+const inputAdminCode = document.getElementById('inputAdminCode') as HTMLInputElement;
 
-const spanUrlSlug = document.getElementById('inputValidationUrlSlug');
-const spanName = document.getElementById('inputValidationName');
-const spanDescription = document.getElementById('inputValidationDescription');
-const spanAdminCode = document.getElementById('inputValidationAdminCode');
+const spanUrlSlug = document.getElementById('inputValidationUrlSlug') as HTMLSpanElement;
+const spanName = document.getElementById('inputValidationName') as HTMLSpanElement;
+const spanDescription = document.getElementById('inputValidationDescription') as HTMLSpanElement;
+const spanAdminCode = document.getElementById('inputValidationAdminCode') as HTMLSpanElement;
 
 let inputCorrectName = false;
 let inputCorrectDescription = false;
@@ -25,7 +25,7 @@ const checkIfAllInputsAreCorrect = () => {
   }
 };
 
-const validationValueLength = (inputElement, spanElement, message) => {
+const validationValueLength = (inputElement: HTMLInputElement, spanElement: HTMLSpanElement, message: string) => {
   const value = inputElement.value;
   const colorInputRed = () => {
     inputElement.style.borderWidth = '2px';
@@ -111,20 +111,20 @@ inputUrlSlug.addEventListener('input', function () {
   }
 });
 
-const urlSlugDiv = document.getElementById('urlSlugDiv');
+const urlSlugDiv = document.getElementById('urlSlugDiv') as HTMLDivElement;
 
-form.addEventListener('submit', async function (event) {
+form.addEventListener('submit', async function (event: SubmitEvent) {
   event.preventDefault();
 
   if (!checkIfAllInputsAreCorrect()) {
     return;
   }
 
-  const name = form.name.value;
-  const description = form.description.value;
-  const adminCode = form.admin_code.value;
+  const name = inputName.value;
+  const description = inputDescription.value;
+  const adminCode = inputAdminCode.value;
 
-  const formValues = {
+  const formValues: TournamentFormData = {
     name: name,
     description: description,
     admin_code: adminCode
@@ -136,16 +136,23 @@ form.addEventListener('submit', async function (event) {
 
   const tournament = await postTournament(formValues);
   if (tournament.errors) {
-    const message = tournament.errors[0].message;
-    if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/) && urlSlugDiv.style.display === 'block') {
+    const message = tournament.errors[0]?.message;
+    if (message?.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/) && urlSlugDiv.style.display === 'block') {
       // TODO: show red error message below url slug input "URL slug is already used."
-    } else if (message.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/)) {
+    } else if (message?.match(/(Key\ )\(url_slug\)=(.+)(?=(already exists.))/)) {
       urlSlugDiv.style.display = 'block';
     }
   }
 });
 
-async function postTournament(data) {
+interface TournamentFormData {
+  name: string;
+  description: string;
+  admin_code: string;
+  url_slug?: string;
+}
+
+async function postTournament(data: TournamentFormData) {
   try {
     // TODO: change to non-localhost URL for production
     const response = await fetch('http://localhost:8000/tournaments', {
@@ -155,7 +162,7 @@ async function postTournament(data) {
       },
       body: JSON.stringify(data)
     });
-    const tournament = response.json();
+    const tournament: any = response.json();
     if (response.status === 201) {
       window.location.href = '/tournament/' + tournament.url_slug + '/admin';
     }
