@@ -8,10 +8,16 @@
 
 ## Local development
 
-To start the bookmarks node backend including a postgres database in docker, run:
+To start the sports tournament node backend including a postgres database in docker, run:
 
 ```bash
 npx nx run api:serve
+```
+
+To start the sports tournament landing page, run:
+
+```bash
+npx nx run landing-page:serve
 ```
 
 ## Build

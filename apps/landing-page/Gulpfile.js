@@ -12,7 +12,7 @@ var browserSync = require('browser-sync').create();
 var nunjucksRender = require('gulp-nunjucks-render');
 var ts = require('gulp-typescript');
 var tsProject = ts.createProject('tsconfig.json');
-var siteOutput = './dist';
+var siteOutput = '../../dist/apps/landing-page';
 
 // -----------------------------------------------------------------------------
 // Configuration
@@ -65,7 +65,7 @@ gulp.task('nunjucks', function () {
 // Delete dist ouput
 
 gulp.task('clean', function () {
-  return del(['dist']);
+  return del([siteOutput], { force: true });
 });
 
 const watchFiles = () => {
@@ -107,5 +107,5 @@ gulp.task('serve', gulp.series('sass', 'nunjucks', 'scripts', startDevServer));
 // Build task
 
 gulp.task('build', gulp.series('clean', gulp.parallel('sass', 'nunjucks', 'scripts')), function () {
-  console.log('built your app to /dist');
+  console.log('built your app to ' + siteOutput);
 });
