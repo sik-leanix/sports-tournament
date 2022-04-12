@@ -1,4 +1,4 @@
-import express, { Application } from 'express'
+import express, { Application } from 'express';
 import { tournamentRoute } from './controllers/tournaments/router';
 import { sendErrorResponse } from "./error-handling/error-handler";
 import { serveOpenapiSpec } from './pre-request-handlers/openapi';
@@ -24,6 +24,6 @@ app.use("/openapi.json", serveOpenapiSpec);
 
 
 app.listen(app.get('port'), function () {
-    console.log(`App is running at http://localhost:${app.get('port')}`);
+    console.log(`App is running at http://localhost:${app.get('port')}/tournaments`);
 });
 
