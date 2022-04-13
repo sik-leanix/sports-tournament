@@ -10,10 +10,10 @@ interface ProcessEnvironmentVariables {
 }
 
 const LOCAL_CONFIG = { // When changing this, also change the README.md!
-  user: 'sports_app',
+  user: 'postgres',
   host: 'localhost',
-  database: 'sports_tournament_dev',
-  port: parseFloat('5432'),
+  database: 'postgres',
+  port: parseFloat('5433'),
   password: 'secret',
   ssl: false
 }
@@ -27,7 +27,7 @@ export function getDatabaseConfig(env: ProcessEnvironmentVariables): Knex.PgConn
     user: env.POSTGRES_USER,
     host: env.POSTGRES_HOST,
     database: env.POSTGRES_DATABASE,
-    port: parseFloat(env.POSTGRES_PORT ?? '5432'),
+    port: parseFloat(env.POSTGRES_PORT ?? '5433'),
     password: env.POSTGRES_PASSWORD,
     ssl: true
   };

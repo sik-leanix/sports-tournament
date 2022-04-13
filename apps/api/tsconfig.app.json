@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/apps/api",
+    "module": "commonjs",
+    "rootDir": "src",
+    "types": ["node", "express"],
+    "resolveJsonModule": true
+  },
+  "exclude": ["src/**/*.spec.ts"],
+  "include": ["src/**/*.ts", "src/assets/*.json"]
+}
