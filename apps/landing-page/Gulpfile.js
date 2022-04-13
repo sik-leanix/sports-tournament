@@ -62,6 +62,16 @@ gulp.task('nunjucks', function () {
     .pipe(gulp.dest(siteOutput));
 });
 
+// -----------------------------------------------------------------------------
+// Netlify configuration
+// -----------------------------------------------------------------------------
+
+gulp.task('netlify-config', function () {
+  return gulp
+    .src(['_redirects'])
+    .pipe(gulp.dest(siteOutput));
+});
+
 // Delete dist ouput
 
 gulp.task('clean', function () {
@@ -106,6 +116,6 @@ gulp.task('serve', gulp.series('sass', 'nunjucks', 'scripts', startDevServer));
 
 // Build task
 
-gulp.task('build', gulp.series('clean', gulp.parallel('sass', 'nunjucks', 'scripts')), function () {
+gulp.task('build', gulp.series('clean', gulp.parallel('sass', 'nunjucks', 'scripts', 'netlify-config')), function () {
   console.log('built your app to ' + siteOutput);
 });
