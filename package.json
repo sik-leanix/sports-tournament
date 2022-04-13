@@ -9,7 +9,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "build-netlify": "nx build frontend && nx build landing-page && ts-node ./build-netlify.ts",
+    "build-netlify": "nx build frontend --prod && nx build landing-page && ts-node ./build-netlify.ts",
     "api:knex": "knex --knexfile apps/api/src/db/knexfile.ts",
     "api:build": "tsc --project apps/api/tsconfig.app.json",
     "api:rollback-all": "knex migrate:rollback --all --knexfile apps/api/src/db/knexfile.ts",
