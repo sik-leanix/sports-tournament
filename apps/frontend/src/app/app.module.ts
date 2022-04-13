@@ -10,7 +10,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
   declarations: [AppComponent, NxWelcomeComponent],
   imports: [BrowserModule, RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' })],
   providers: [
-    {provide: APP_BASE_HREF, useValue: ''}
+    {provide: APP_BASE_HREF, useValue: 'tournaments'}
   ],
   bootstrap: [AppComponent]
 })
