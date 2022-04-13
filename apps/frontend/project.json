@@ -14,7 +14,7 @@
         "polyfills": "apps/frontend/src/polyfills.ts",
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/frontend/src/favicon.ico", "apps/frontend/src/assets", "../../langing-page/_redirects"],
+        "assets": ["apps/frontend/src/favicon.ico", "apps/frontend/src/assets", "../../apps/langing-page/_redirects"],
         "styles": ["apps/frontend/src/styles.scss"],
         "scripts": []
       },
