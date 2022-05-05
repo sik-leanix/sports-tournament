@@ -55,6 +55,7 @@
     "@nrwl/node": "13.8.4",
     "@nrwl/tao": "13.8.4",
     "@nrwl/workspace": "13.8.4",
+    "@types/core-js": "^2.5.5",
     "@types/express": "4.17.13",
     "@types/jest": "27.0.2",
     "@types/node": "16.11.7",
