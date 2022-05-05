@@ -12,16 +12,17 @@ export class TournamentAdminComponent {
   tournament: any;
   tournamentUrlSlug$!: Observable<string>;
   urlSlug: any;
+  editingIsEnabled = false;
 
   ngOnInit() {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
+    this.tournamentUrlSlug$.subscribe((slug) => (this.urlSlug = slug));
     this.httpClient.get<any>(`http://localhost:8000/tournaments/wimbledon2022`).subscribe((response) => {
       console.log(response);
       this.tournament = response;
     });
-    this.tournamentUrlSlug$.subscribe((slug) => (this.urlSlug = slug));
   }
   enableEditing() {
-    console.log(this.urlSlug);
+    this.editingIsEnabled = !this.editingIsEnabled;
   }
 }
