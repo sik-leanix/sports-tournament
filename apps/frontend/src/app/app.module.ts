@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { TournamentAdminComponent } from './tournament-admin/tournament-admin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, NxWelcomeComponent, TournamentAdminComponent],
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot(
       routes,
       { enableTracing: true } // TODO: disable enableTracing again
-    )
+    ),
+    NoopAnimationsModule
   ],
   bootstrap: [AppComponent]
 })
