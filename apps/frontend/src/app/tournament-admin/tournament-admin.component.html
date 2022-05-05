@@ -1,1 +1,11 @@
 <p>Here be dragons. Slug: {{ tournamentUrlSlug$ | async }}</p>
+<p id="logo">Tournament App</p>
+<h2 id="nameOfTournament">{{ tournament.name }}</h2>
+<hr style="width: 30%" />
+<div id="tournamentData">
+  <h2>Description:</h2>
+  <a>{{ tournament.description }}</a>
+  <h2>Sharing:</h2>
+  <p>Url Slug: {{ tournament.url_slug }}</p>
+  <p>Player Code: work in progress</p>
+</div>
