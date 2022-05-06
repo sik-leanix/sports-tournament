@@ -14,7 +14,7 @@ body {
   font-size: 15px;
 }
 
-#nameOfTournament {
+.nameOfTournament {
   text-align: center;
   font-family: 'Koulen', cursive;
   font-size: 30px;
@@ -39,11 +39,17 @@ body {
   height: 50px;
 }
 
-.editTournamentDataForm {
+.editTournamentData {
   font-family: 'Poppins';
   font-size: 15px;
-  margin: 10vh 40vh 0 40vh;
 }
 
-#editTournamentName {
+.textAlign {
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+  font-family: 'Poppins';
+  font-size: 15px;
 }
