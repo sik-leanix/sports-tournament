@@ -1,0 +1,19 @@
+<div *ngIf="editingIsEnabled">
+  <form [formGroup]="myForm">
+    <div class="editTournamentData textAlign form-group">
+      <input matInput formControlName="name" id="editTournamentName" class="nameOfTournament" value="{{ tournament.name }}" />
+      <hr style="width: 30%" />
+    </div>
+    <div id="tournamentData">
+      <h2>Description:</h2>
+      <textarea formControlName="description" style="width: 100%">{{ tournament.description.trim() }}</textarea>
+      <h2>Sharing:</h2>
+      <a>Url Slug: </a>
+      <input matInput formControlName="url_slug" class="editTournamentData" value="{{ tournament.url_slug }}" />
+      <p>Player Code: work in progress</p>
+    </div>
+    <div class="footer">
+      <button mat-raised-button style="margin: 1vh 40vh 0 0" (click)="enableEditing()">Save</button>
+    </div>
+  </form>
+</div>

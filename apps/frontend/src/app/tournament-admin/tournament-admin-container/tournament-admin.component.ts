@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'st-tournament-admin',
   templateUrl: './tournament-admin.component.html',
   styleUrls: ['./tournament-admin.component.scss']
 })
-export class TournamentAdminComponent {
+export class TournamentAdminComponent implements OnInit {
   constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
   tournament: any;
   tournamentUrlSlug$!: Observable<string>;
@@ -17,8 +17,7 @@ export class TournamentAdminComponent {
   ngOnInit() {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
     this.tournamentUrlSlug$.subscribe((slug) => (this.urlSlug = slug));
-    this.httpClient.get<any>(`http://localhost:8000/tournaments/wimbledon2022`).subscribe((response) => {
-      console.log(response);
+    this.httpClient.get<any>(`http://localhost:8000/tournaments/` + this.urlSlug).subscribe((response) => {
       this.tournament = response;
     });
   }
