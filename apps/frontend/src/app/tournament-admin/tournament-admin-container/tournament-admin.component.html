@@ -1,5 +1,5 @@
 <p id="logo">Tournament App</p>
-<div *ngIf="!editingIsEnabled">
+<div *ngIf="tournament$ | async as tournament">
   <h2 class="nameOfTournament">{{ tournament.name }}</h2>
   <hr style="width: 30%" />
   <div id="tournamentData">

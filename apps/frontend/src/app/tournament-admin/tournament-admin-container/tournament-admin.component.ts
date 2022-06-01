@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
+import { TournamentData } from '../tournament-interface';
 @Component({
   selector: 'st-tournament-admin',
   templateUrl: './tournament-admin.component.html',
@@ -9,17 +10,16 @@ import { map, Observable } from 'rxjs';
 })
 export class TournamentAdminComponent implements OnInit {
   constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
-  tournament: any;
-  tournamentUrlSlug$!: Observable<string>;
-  urlSlug: any;
+  tournament$!: Observable<TournamentData>;
   editingIsEnabled = false;
+
+  private tournamentUrlSlug$!: Observable<string>;
 
   ngOnInit() {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
-    this.tournamentUrlSlug$.subscribe((slug) => (this.urlSlug = slug));
-    this.httpClient.get<any>(`http://localhost:8000/tournaments/` + this.urlSlug).subscribe((response) => {
-      this.tournament = response;
-    });
+    this.tournament$ = this.tournamentUrlSlug$.pipe(
+      switchMap((urlSlug) => this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + urlSlug))
+    );
   }
   enableEditing() {
     this.editingIsEnabled = !this.editingIsEnabled;
