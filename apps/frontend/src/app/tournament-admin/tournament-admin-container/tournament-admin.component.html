@@ -1,16 +1,21 @@
 <p id="logo">Tournament App</p>
-<div *ngIf="tournament$ | async as tournament">
-  <h2 class="nameOfTournament">{{ tournament.name }}</h2>
-  <hr style="width: 30%" />
-  <div id="tournamentData">
-    <h2>Description:</h2>
-    <a>{{ tournament.description }}</a>
-    <h2>Sharing:</h2>
-    <p>Url Slug: {{ tournament.url_slug }}</p>
-    <p>Player Code: work in progress</p>
+<ng-container *ngIf="!editingIsEnabled; else editingForm">
+  <div *ngIf="tournament$ | async as tournament">
+    <h2 class="nameOfTournament">{{ tournament.name }}</h2>
+    <hr style="width: 30%" />
+    <div id="tournamentData">
+      <h2>Description:</h2>
+      <a>{{ tournament.description }}</a>
+      <h2>Sharing:</h2>
+      <p>Url Slug: {{ tournament.url_slug }}</p>
+      <p>Player Code: work in progress</p>
+    </div>
+    <div class="footer">
+      <button mat-raised-button style="margin: 1vh 40vh 0 0" (click)="enableEditing()">Edit</button>
+    </div>
   </div>
-  <div class="footer">
-    <button mat-raised-button style="margin: 1vh 40vh 0 0" (click)="enableEditing()">Edit</button>
-  </div>
-</div>
-<st-tournament-form *ngIf="editingIsEnabled"></st-tournament-form>
+</ng-container>
+
+<ng-template #editingForm>
+  <st-tournament-form (save)="onSaveTournamentForm($event)"></st-tournament-form>
+</ng-template>

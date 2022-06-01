@@ -1,4 +1,4 @@
-<form [formGroup]="myForm">
+<form [formGroup]="myForm" (submit)="onSubmit()">
   <div class="editTournamentData textAlign form-group">
     <input matInput formControlName="name" id="editTournamentName" class="nameOfTournament" />
     <div *ngIf="this.myForm.invalid">
@@ -30,6 +30,6 @@
     <p>Player Code: work in progress</p>
   </div>
   <div class="footer">
-    <button mat-raised-button style="margin: 1vh 40vh 0 0" type="submit" [disabled]="!this.myForm.valid" (click)="onSubmit()">Save</button>
+    <button mat-raised-button style="margin: 1vh 40vh 0 0" type="submit" [disabled]="!myForm.valid">Save</button>
   </div>
 </form>

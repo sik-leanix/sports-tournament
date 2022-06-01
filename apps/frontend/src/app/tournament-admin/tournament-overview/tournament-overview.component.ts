@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +21,8 @@ export class TournamentOverviewComponent implements OnInit {
     url_slug: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)])
   });
 
+  @Output() save = new EventEmitter<TournamentData>();
+
   ngOnInit() {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
     this.tournamentUrlSlug$.subscribe((slug) => (this.urlSlug = slug));
@@ -31,5 +33,7 @@ export class TournamentOverviewComponent implements OnInit {
   }
   onSubmit() {
     console.log('Submitted');
+    // TODO: only emit save after successful saving to backend
+    this.save.emit(this.myForm.value);
   }
 }
