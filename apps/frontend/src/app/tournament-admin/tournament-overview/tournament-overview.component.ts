@@ -13,25 +13,23 @@ export class TournamentOverviewComponent implements OnInit {
   constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
   tournament!: TournamentData;
   tournamentUrlSlug$!: Observable<string>;
-  urlSlug: any;
+  urlSlug?: string;
   editingIsEnabled = true;
-  myForm: FormGroup = new FormGroup({});
+  myForm: FormGroup = new FormGroup({
+    name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]),
+    description: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(500)]),
+    url_slug: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)])
+  });
 
   ngOnInit() {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
     this.tournamentUrlSlug$.subscribe((slug) => (this.urlSlug = slug));
     this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + this.urlSlug).subscribe((response) => {
       this.tournament = response;
-      console.log('fetched tournament');
+      this.myForm.patchValue(this.tournament);
     });
-    this.myForm = new FormGroup({
-      name: new FormControl(this.tournament.name),
-      description: new FormControl(this.tournament.description),
-      url_slug: new FormControl(this.tournament.url_slug, Validators.required)
-    });
-    console.log('form updated!');
   }
-  enableEditing() {
-    this.editingIsEnabled = !this.editingIsEnabled;
+  onSubmit() {
+    console.log('Submitted');
   }
 }
