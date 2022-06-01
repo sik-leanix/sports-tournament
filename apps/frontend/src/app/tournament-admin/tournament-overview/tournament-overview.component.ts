@@ -7,7 +7,7 @@ import { TournamentData } from '../tournament-interface';
 @Component({
   selector: 'st-tournament-form',
   templateUrl: './tournament-overview.component.html',
-  styleUrls: ['./tournament-overview.component.scss']
+  styleUrls: ['../tournament-admin-container/tournament-admin.component.scss']
 })
 export class TournamentOverviewComponent implements OnInit {
   constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
