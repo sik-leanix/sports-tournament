@@ -6,10 +6,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TournamentData } from '../tournament-interface';
 @Component({
   selector: 'st-tournament-form',
-  templateUrl: './tournament-overview.component.html',
+  templateUrl: './tournament-form.component.html',
   styleUrls: ['../tournament-admin-container/tournament-admin.component.scss']
 })
-export class TournamentOverviewComponent implements OnInit {
+export class TournamentFormComponent implements OnInit {
   constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
   tournament!: TournamentData;
   tournamentUrlSlug$!: Observable<string>;
@@ -29,6 +29,7 @@ export class TournamentOverviewComponent implements OnInit {
     this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + this.urlSlug).subscribe((response) => {
       this.tournament = response;
       this.myForm.patchValue(this.tournament);
+      console.log(this.tournament.description);
     });
   }
   onSubmit() {

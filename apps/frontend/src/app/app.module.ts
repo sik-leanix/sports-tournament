@@ -11,10 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // import { TournamentAdminModule } from './tournament-admin/tournament-admin.module';
-import { TournamentOverviewComponent } from './tournament-admin/tournament-overview/tournament-overview.component';
+import { TournamentFormComponent } from './tournament-admin/tournament-form/tournament-form.component';
 import { TournamentAdminComponent } from './tournament-admin/tournament-admin-container/tournament-admin.component';
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, NxWelcomeComponent, TournamentOverviewComponent, TournamentAdminComponent],
+  declarations: [AppComponent, NotFoundComponent, NxWelcomeComponent, TournamentFormComponent, TournamentAdminComponent],
   imports: [
     CommonModule,
     BrowserModule,
