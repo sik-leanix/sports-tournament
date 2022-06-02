@@ -9,7 +9,7 @@
     <hr style="width: 30%" />
   </div>
   <div id="tournamentData">
-    <h2>Description:</h2>
+    <label style="font-size: 1, 5em" for="description">Description:</label>
     <textarea formControlName="description" style="width: 100%"></textarea>
     <div *ngIf="this.myForm.invalid">
       <div class="error" *ngIf="this.myForm.get('description')?.hasError('required')">Description is required</div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <h2>Sharing:</h2>
-    <a>Url Slug: </a>
+    <label for="url_slug">Url Slug: </label>
     <input formControlName="url_slug" matInput class="editTournamentData" />
     <div *ngIf="this.myForm.invalid">
       <div class="error" *ngIf="this.myForm.get('url_slug')?.hasError('required')">Url Slug is required</div>
