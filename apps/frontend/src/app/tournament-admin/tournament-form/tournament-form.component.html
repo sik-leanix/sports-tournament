@@ -1,0 +1,41 @@
+<form [formGroup]="myForm" (submit)="onSubmit()">
+  <div class="editTournamentData textAlign form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Name:</mat-label>
+      <input formControlName="name" matInput />
+    </mat-form-field>
+    <div *ngIf="this.myForm.invalid">
+      <div class="error" *ngIf="this.myForm.get('name')?.hasError('required')">Name is required</div>
+      <div class="error" *ngIf="this.myForm.get('name')?.hasError('minlength')">Name must be at least 3 characters long.</div>
+      <div class="error" *ngIf="this.myForm.get('name')?.hasError('maxlength')">Name cannot have more than 40 characters.</div>
+    </div>
+    <hr style="width: 30%" />
+  </div>
+  <div id="tournamentData">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea id="description" matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <div *ngIf="this.myForm.invalid">
+      <div class="error" *ngIf="this.myForm.get('description')?.hasError('required')">Description is required</div>
+      <div class="error" *ngIf="this.myForm.get('description')?.hasError('minlength')">Description must be at least 3 characters long.</div>
+      <div class="error" *ngIf="this.myForm.get('description')?.hasError('maxlength')">
+        Description cannot have more than 500 characters.
+      </div>
+    </div>
+    <h2>Sharing:</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Url Slug:</mat-label>
+      <input id="url_slug" formControlName="url_slug" matInput />
+    </mat-form-field>
+    <div *ngIf="this.myForm.invalid">
+      <div class="error" *ngIf="this.myForm.get('url_slug')?.hasError('required')">Url Slug is required</div>
+      <div class="error" *ngIf="this.myForm.get('url_slug')?.hasError('minlength')">Url Slug must be at least 3 characters long.</div>
+      <div class="error" *ngIf="this.myForm.get('url_slug')?.hasError('maxlength')">Url Slug cannot have more than 40 characters.</div>
+    </div>
+    <p>Player Code: work in progress</p>
+  </div>
+  <div class="footer">
+    <button mat-raised-button style="margin: 1vh 40vh 0 0" type="submit" [disabled]="!myForm.valid">Save</button>
+  </div>
+</form>

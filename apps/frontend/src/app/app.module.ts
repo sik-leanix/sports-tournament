@@ -6,23 +6,31 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { TournamentAdminComponent } from './tournament-admin/tournament-admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+// import { TournamentAdminModule } from './tournament-admin/tournament-admin.module';
+import { TournamentFormComponent } from './tournament-admin/tournament-form/tournament-form.component';
+import { TournamentAdminComponent } from './tournament-admin/tournament-admin-container/tournament-admin.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, NxWelcomeComponent, TournamentAdminComponent],
+  declarations: [AppComponent, NotFoundComponent, NxWelcomeComponent, TournamentFormComponent, TournamentAdminComponent],
   imports: [
     CommonModule,
     BrowserModule,
     HttpClientModule,
     MaterialModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // TODO: disable enableTracing again
+      { enableTracing: false } // TODO: disable enableTracing again
     ),
     BrowserAnimationsModule
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

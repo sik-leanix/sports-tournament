@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router'; // CLI imports router
-import { NotFoundComponent } from './not-found/not-found.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { TournamentAdminComponent } from './tournament-admin/tournament-admin.component';
+import { TournamentAdminComponent } from './tournament-admin/tournament-admin-container/tournament-admin.component';
 
 export const routes: Routes = [
   {
