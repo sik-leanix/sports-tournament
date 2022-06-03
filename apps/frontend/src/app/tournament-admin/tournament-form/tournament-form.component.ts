@@ -27,7 +27,10 @@ export class TournamentFormComponent implements OnInit {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
     this.tournamentUrlSlug$.subscribe((slug) => (this.urlSlug = slug));
     this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + this.urlSlug).subscribe((response) => {
-      this.tournament = response;
+      this.tournament = {
+        ...response,
+        description: response.description.trim()
+      };
       this.myForm.patchValue(this.tournament);
       console.log(this.tournament.description);
     });
