@@ -1,6 +1,9 @@
 <form [formGroup]="myForm" (submit)="onSubmit()">
   <div class="editTournamentData textAlign form-group">
-    <input matInput formControlName="name" id="editTournamentName" class="nameOfTournament" />
+    <mat-form-field appearance="fill">
+      <mat-label>Name:</mat-label>
+      <input formControlName="name" matInput />
+    </mat-form-field>
     <div *ngIf="this.myForm.invalid">
       <div class="error" *ngIf="this.myForm.get('name')?.hasError('required')">Name is required</div>
       <div class="error" *ngIf="this.myForm.get('name')?.hasError('minlength')">Name must be at least 3 characters long.</div>
@@ -10,7 +13,10 @@
   </div>
   <div id="tournamentData">
     <label style="font-size: 1, 5em" for="description">Description:</label>
-    <textarea formControlName="description" style="width: 100%"></textarea>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea id="description" matInput formControlName="description"></textarea>
+    </mat-form-field>
     <div *ngIf="this.myForm.invalid">
       <div class="error" *ngIf="this.myForm.get('description')?.hasError('required')">Description is required</div>
       <div class="error" *ngIf="this.myForm.get('description')?.hasError('minlength')">Description must be at least 3 characters long.</div>
@@ -20,13 +26,15 @@
     </div>
     <h2>Sharing:</h2>
     <label for="url_slug">Url Slug: </label>
-    <input formControlName="url_slug" matInput class="editTournamentData" />
+    <mat-form-field appearance="fill">
+      <mat-label>Url Slug:</mat-label>
+      <input id="url_slug" formControlName="url_slug" matInput />
+    </mat-form-field>
     <div *ngIf="this.myForm.invalid">
       <div class="error" *ngIf="this.myForm.get('url_slug')?.hasError('required')">Url Slug is required</div>
       <div class="error" *ngIf="this.myForm.get('url_slug')?.hasError('minlength')">Url Slug must be at least 3 characters long.</div>
       <div class="error" *ngIf="this.myForm.get('url_slug')?.hasError('maxlength')">Url Slug cannot have more than 40 characters.</div>
     </div>
-
     <p>Player Code: work in progress</p>
   </div>
   <div class="footer">

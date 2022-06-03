@@ -13,6 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // import { TournamentAdminModule } from './tournament-admin/tournament-admin.module';
 import { TournamentFormComponent } from './tournament-admin/tournament-form/tournament-form.component';
 import { TournamentAdminComponent } from './tournament-admin/tournament-admin-container/tournament-admin.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, NxWelcomeComponent, TournamentFormComponent, TournamentAdminComponent],
   imports: [
@@ -20,6 +21,7 @@ import { TournamentAdminComponent } from './tournament-admin/tournament-admin-co
     BrowserModule,
     HttpClientModule,
     MaterialModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
