@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, merge, Observable, Subject, switchMap } from 'rxjs';
 import { TournamentData } from '../tournament-interface';
 @Component({
@@ -16,7 +16,7 @@ export class TournamentAdminComponent implements OnInit {
   private tournamentUrlSlug$!: Observable<string>;
   private tournamentDataUpdated$ = new Subject<TournamentData>();
 
-  constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
+  constructor(private route: ActivatedRoute, private httpClient: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
@@ -24,6 +24,10 @@ export class TournamentAdminComponent implements OnInit {
       switchMap((urlSlug) => this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + urlSlug))
     );
     this.tournament$ = merge(initialTournamentData$, this.tournamentDataUpdated$);
+  }
+  navigate() {
+    //TODO: Only navigate to 404 if tournament not found
+    this.router.navigate(['/404']);
   }
   enableEditing() {
     this.editingIsEnabled = !this.editingIsEnabled;
