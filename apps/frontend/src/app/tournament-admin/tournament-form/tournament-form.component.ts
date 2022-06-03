@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TournamentData } from '../tournament-interface';
 @Component({
@@ -10,7 +10,7 @@ import { TournamentData } from '../tournament-interface';
   styleUrls: ['../tournament-admin-container/tournament-admin.component.scss']
 })
 export class TournamentFormComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
+  constructor(private route: ActivatedRoute, private httpClient: HttpClient, private router: Router) {}
   tournament!: TournamentData;
   tournamentUrlSlug$!: Observable<string>;
   urlSlug?: string;
@@ -29,15 +29,43 @@ export class TournamentFormComponent implements OnInit {
     this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + this.urlSlug).subscribe((response) => {
       this.tournament = {
         ...response,
-        description: response.description.trim()
+        description: response.description //TODO: Adjust the text in a other way
+          .replace(/(\r\n|\n|\r)/gm, '')
+          .replace(/\s{2,}/g, ' ')
+          .trim()
       };
       this.myForm.patchValue(this.tournament);
-      console.log(this.tournament.description);
     });
   }
+  updateTournamentData() {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    this.httpClient
+      .put<TournamentData>(
+        'http://localhost:8000/tournaments/' + this.urlSlug,
+        {
+          name: this.myForm.value.name,
+          description: this.myForm.value.description,
+          url_slug: this.myForm.value.url_slug
+        },
+        { headers }
+      )
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+  navigate() {
+    this.router.navigate(['/' + this.myForm.value.url_slug + '/admin']);
+  }
   onSubmit() {
-    console.log('Submitted');
-    // TODO: only emit save after successful saving to backend
-    this.save.emit(this.myForm.value);
+    try {
+      this.updateTournamentData();
+      this.save.emit(this.myForm.value);
+    } catch (error) {
+      console.error(error);
+    }
+    if (this.urlSlug != this.myForm.value.url_slug) {
+      this.navigate();
+    }
   }
 }
