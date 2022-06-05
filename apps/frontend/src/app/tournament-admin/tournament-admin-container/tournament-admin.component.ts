@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, merge, Observable, Subject, switchMap } from 'rxjs';
 import { TournamentData } from '../tournament-interface';
+import { response } from 'express';
 @Component({
   selector: 'st-tournament-admin',
   templateUrl: './tournament-admin.component.html',
@@ -22,6 +23,15 @@ export class TournamentAdminComponent implements OnInit {
     this.tournamentUrlSlug$ = this.route.paramMap.pipe(map((params) => params.get('tournament_url_slug')!));
     const initialTournamentData$ = this.tournamentUrlSlug$.pipe(
       switchMap((urlSlug) => this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + urlSlug))
+    );
+    initialTournamentData$.subscribe(
+      (response) => {
+        console.log('Fetched tournament');
+      },
+      (error) => {
+        console.error('Tournament not found');
+        this.navigate();
+      }
     );
     this.tournament$ = merge(initialTournamentData$, this.tournamentDataUpdated$);
   }
