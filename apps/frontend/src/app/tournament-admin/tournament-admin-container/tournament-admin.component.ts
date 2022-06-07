@@ -29,8 +29,10 @@ export class TournamentAdminComponent implements OnInit {
         console.log('Fetched tournament');
       },
       (error) => {
-        console.error('Tournament not found');
-        this.navigate();
+        if (error.status === 404) {
+          console.error('Tournament not found');
+          this.navigate();
+        }
       }
     );
     this.tournament$ = merge(initialTournamentData$, this.tournamentDataUpdated$);
