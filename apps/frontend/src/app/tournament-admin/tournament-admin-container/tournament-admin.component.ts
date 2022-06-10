@@ -25,20 +25,21 @@ export class TournamentAdminComponent implements OnInit {
       switchMap((urlSlug) => this.httpClient.get<TournamentData>(`http://localhost:8000/tournaments/` + urlSlug))
     );
     initialTournamentData$.subscribe(
-      (response) => {
+      () => {
         console.log('Fetched tournament');
       },
       (error) => {
         if (error.status === 404) {
           console.error('Tournament not found');
           this.navigate();
+        } else {
+          console.error(error);
         }
       }
     );
     this.tournament$ = merge(initialTournamentData$, this.tournamentDataUpdated$);
   }
   navigate() {
-    //TODO: Only navigate to 404 if tournament not found
     this.router.navigate(['/404']);
   }
   enableEditing() {
