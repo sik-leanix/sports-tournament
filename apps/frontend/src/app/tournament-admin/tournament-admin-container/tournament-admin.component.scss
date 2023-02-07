@@ -1,0 +1,40 @@
+#logo {
+  font-size: 2.5rem;
+  margin-top: 2vh;
+  margin-left: 3vh;
+}
+
+.nameOfTournament {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 1vh;
+}
+
+#tournamentData {
+  font-size: 15px;
+  margin: 10vh 40vh 0 40vh;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: right;
+  border: 1px solid;
+  height: 50px;
+}
+
+.editTournamentData {
+  font-size: 15px;
+}
+
+.textAlign {
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
