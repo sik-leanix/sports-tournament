@@ -117,6 +117,9 @@ gulp.task('serve', gulp.series('sass', 'nunjucks', 'scripts', startDevServer));
 // Build task
 
 gulp.task('build', gulp.series('clean', gulp.parallel('sass', 'nunjucks', 'scripts', 'netlify-config')), function () {
+<<<<<<< HEAD
   console.log('built your app to /dist');
+=======
+>>>>>>> main
   console.log('built your app to ' + siteOutput);
 });

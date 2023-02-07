@@ -4,4 +4,3 @@ node_modules/
 frontend/dist
 dist/
 .angular
-apps/api/ERD.drawio
